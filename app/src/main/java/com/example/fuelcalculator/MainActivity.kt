@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.view.*
@@ -12,7 +13,15 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity(), {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.nav_overview){
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container,OverviewFragment()).commit()
+        }
+
+        drawer.closeDrawer(GravityCompat.START)
+        return true
+    }
 
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
@@ -37,11 +46,12 @@ class MainActivity : AppCompatActivity(), {
         setContentView(R.layout.activity_main)
 
         drawer = findViewById(R.id.drawer_layout)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        var navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
 
-        lateinit var toolbar:Toolbar
+        var toolbar:Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
             this, drawer, toolbar,
@@ -56,7 +66,7 @@ class MainActivity : AppCompatActivity(), {
                 OverviewFragment()
             ).commit()
             navigationView.setCheckedItem(R.id.nav_overview)
-                    navigationView.getMenu().getItem(1).setActionView(R.layout.menu_image);
+                    navigationView.menu.getItem(1).setActionView(R.layout.menu_image);
         }
     }
 
