@@ -1,4 +1,4 @@
-package com.example.fuelcalculator
+package com.example.fuelCalculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,14 +8,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.view.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.nav_overview){
+        if (item.itemId == R.id.nav_home){
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container,OverviewFragment()).commit()
         }
 
@@ -50,8 +49,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
 
-        var toolbar:Toolbar = findViewById(R.id.toolbar)
+        val toolbar:Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        this@MainActivity.title = ("FuelCalculator") // default toolbar title
 
         val toggle = ActionBarDrawerToggle(
             this, drawer, toolbar,
@@ -59,14 +59,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-//
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
                 OverviewFragment()
             ).commit()
-            navigationView.setCheckedItem(R.id.nav_overview)
-                    navigationView.menu.getItem(1).setActionView(R.layout.menu_image);
+            navigationView.setCheckedItem(R.id.nav_home)
+                    navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
     }
 

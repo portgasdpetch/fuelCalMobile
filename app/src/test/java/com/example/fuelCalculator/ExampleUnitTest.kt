@@ -1,4 +1,4 @@
-package com.example.fuelcalculator
+package com.example.fuelCalculator
 
 import org.junit.Test
 

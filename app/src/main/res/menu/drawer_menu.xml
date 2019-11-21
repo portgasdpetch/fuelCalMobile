@@ -11,7 +11,7 @@
     <group android:checkableBehavior="single"
         android:id="@+id/group_main_menu">
         <item
-            android:id="@+id/nav_overview"
+            android:id="@+id/nav_home"
             android:title="Home" />
     </group>
 
