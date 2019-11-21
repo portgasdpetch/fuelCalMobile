@@ -12,20 +12,20 @@ import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), {
 
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
 
-    var gasPrice: Double = 0.toDouble()
+    private var gasPrice: Double = 0.toDouble()
     private var totalDistance: Double = 0.toDouble()
     private var totalPrice: Double = 0.toDouble()
     private var pricePerPerson: Double = 0.toDouble()
     private var gasConsumption: Double = 0.toDouble()
     private var averageConsumption: Double = 0.toDouble()
     private var eachVehicleConsumption: Double = 0.toDouble()
-    var vehicleQuantity: Int = 0
-    var people: Int = 0
+    private var vehicleQuantity: Int = 0
+    private var people: Int = 0
     private var i: Int = 0
     private var sc = Scanner(System.`in`)
     private lateinit var vehicleDistance: DoubleArray
@@ -36,26 +36,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        drawer = findViewById(R.id.drawer_layout)
-//        val navigationView: NavigationView = findViewById(R.id.nav_view)
-//        navigationView.setNavigationItemSelectedListener(this)
+        drawer = findViewById(R.id.drawer_layout)
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
 
 
-//        val toggle = ActionBarDrawerToggle(
-//            this, drawer, toolbar,
-//            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-//        )
-//        drawer.addDrawerListener(toggle)
-//        toggle.syncState()
+        lateinit var toolbar:Toolbar
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawer, toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
 //
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction().replace(
-//                R.id.fragment_container,
-//                OverviewFragment()
-//            ).commit()
-//            navigationView.setCheckedItem(R.id.nav_overview)
-        //            navigationView.getMenu().getItem(1).setActionView(R.layout.menu_image);
-//        }
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                OverviewFragment()
+            ).commit()
+            navigationView.setCheckedItem(R.id.nav_overview)
+                    navigationView.getMenu().getItem(1).setActionView(R.layout.menu_image);
+        }
     }
 
 
