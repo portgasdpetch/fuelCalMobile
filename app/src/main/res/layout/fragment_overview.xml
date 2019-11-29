@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/holo_orange_light"
-                android:padding="8dp">
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
+    android:padding="16dp">
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/root_relative_layout">
 
 
-        <TextView
-            android:id="@+id/text_view_result"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_quantity_text_input"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:textColor="#000"/>
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+        android:paddingVertical="5dp">
 
-        <com.google.android.material.textfield.TextInputEditText android:layout_width="match_parent"
-                                                                 android:layout_height="wrap_content"
-        android:id="@+id/vehicle_quantity" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/vehicle_quantity"
+                android:hint="Vehicle Quantity"
+                app:errorEnable="true"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_1_text_input"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:paddingVertical="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_1_distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle Quantity"
+                android:inputType="number"
+                app:errorEnable="true"
+            />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
 
 
-        <!--     <TextView-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:text="@string/overview"-->
-        <!--        android:textSize="30sp"-->
-        <!--        android:layout_centerInParent="true"/>-->
-
-    </androidx.core.widget.NestedScrollView>
-
-
-</RelativeLayout>
+</androidx.core.widget.NestedScrollView>
