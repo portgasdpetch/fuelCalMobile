@@ -89,7 +89,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_consumption_text_input"
-            android:layout_width="215dp"
+            android:layout_width="235dp"
             android:layout_height="50dp"
             android:layout_toEndOf="@+id/vehicle_distance_text_input"
             android:layout_below="@+id/gas_price_text_input"
@@ -100,20 +100,57 @@
                 android:id="@+id/vehicle_consumption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Consumption(km/liter)"
+                android:hint="Consumption (km/liter)"
                 android:inputType="numberDecimal"
                 app:errorEnable="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--        <com.google.android.material.button.MaterialButton-->
+        <!--            android:id="@+id/switch_title"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="65dp"-->
+        <!--            style="@style/Widget.MaterialComponents.Button.TextButton"-->
+        <!--            android:layout_toEndOf="@+id/gas_price_text_input"-->
+        <!--            android:layout_below="@+id/people_text_input"-->
+        <!--            android:paddingVertical="10dp"-->
+        <!--            android:text="Same Consumption?"-->
+        <!--            android:textColor="@color/colorPrimaryDark"-->
+        <!--        android:paddingLeft="14dp">-->
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <!--        </com.google.android.material.button.MaterialButton>-->
+
+        <!--        <Switch-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/same_consumption_toggle"-->
+        <!--            android:layout_toEndOf="@+id/switch_title"-->
+        <!--            android:layout_below="@+id/people_text_input"-->
+        <!--            android:paddingVertical="23dp"-->
+        <!--            android:paddingLeft="15dp"-->
+        <!--        />-->
+
+        <ToggleButton
             android:id="@+id/same_consumption_toggle"
-            android:layout_toEndOf="@+id/vehicle_consumption_text_input"
-            android:paddingVertical="145dp"
+            android:layout_width="218dp"
+            android:layout_height="58dp"
+            android:layout_toEndOf="@id/gas_price_text_input"
+            android:layout_below="@+id/people_text_input"
+            android:textOn="Different consumption"
+            android:textOff="Same consumption"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="3dp"
+            android:checked="true"
         />
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicle_distance_text_input"
+            android:layout_centerHorizontal="true"
+            android:text="Confirm" />
 
     </RelativeLayout>
 
