@@ -86,7 +86,7 @@ class OverviewFragment : Fragment() {
         }
 
         toggleSplit.setOnCheckedChangeListener { _, isChecked ->
-            toggleDifferentConsumption.isEnabled = !isChecked
+            toggleDifferentConsumption.isEnabled = isChecked
         }
 
         toggleDifferentConsumption.setOnCheckedChangeListener { _, isChecked ->
