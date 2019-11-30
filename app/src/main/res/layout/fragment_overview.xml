@@ -18,13 +18,13 @@
 
         <ToggleButton
             android:id="@+id/multiple_vehicle_toggle"
-            android:layout_width="150dp"
+            android:layout_width="147dp"
             android:layout_height="75dp"
-            android:textOn="Multiple Vehicle"
-            android:textOff="Single Vehicle"
+            android:textOn="Single Vehicle"
+            android:textOff="Multiple Vehicle"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="3.5dp"
-            android:checked="false"/>
+            android:checked="true"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_quantity_text_input"
@@ -34,15 +34,16 @@
             android:paddingVertical="10dp"
             app:errorEnabled="true"
             android:layout_toEndOf="@+id/multiple_vehicle_toggle"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/vehicle_quantity"
                 android:hint="Vehicle Quantity"
+                android:text="1"
                 android:inputType="number"
-            />
+                android:enabled="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +70,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/people_text_input"
-            android:layout_width="150dp"
+            android:layout_width="162.5dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
             android:layout_below="@+id/vehicle_consumption_text_input"
@@ -87,7 +88,7 @@
 
         <ToggleButton
             android:id="@+id/split_vehicle_toggle"
-            android:layout_width="150dp"
+            android:layout_width="147dp"
             android:layout_height="75dp"
             android:textOn="Combined"
             android:textOff="Split"
@@ -95,7 +96,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="3.5dp"
             android:checked="true"
-        android:visibility="gone"/>
+            android:visibility="visible"
+        android:enabled="false"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_distance_text_input"
@@ -112,8 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Distance"
-                android:inputType="numberDecimal"
-            />
+                android:inputType="numberDecimal"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,7 +140,7 @@
 
         <ToggleButton
             android:id="@+id/same_consumption_toggle"
-            android:layout_width="150dp"
+            android:layout_width="147dp"
             android:layout_height="75dp"
             android:layout_below="@+id/vehicle_distance_text_input"
             android:textOn="Different consumption"
@@ -147,7 +148,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="3.5dp"
             android:checked="false"
-            android:visibility="gone"/>
+            android:visibility="visible"
+        android:enabled="false"/>
 
         <Button
             android:id="@+id/btn_confirm"
