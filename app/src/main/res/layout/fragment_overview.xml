@@ -28,7 +28,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_quantity_text_input"
-            android:layout_width="195dp"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
             android:paddingVertical="10dp"
@@ -49,7 +49,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/gas_price_text_input"
-            android:layout_width="180dp"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
             android:layout_toEndOf="@+id/people_text_input"
@@ -101,7 +101,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_distance_text_input"
-            android:layout_width="120dp"
+            android:layout_width="235dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
             android:layout_below="@+id/vehicle_quantity_text_input"
