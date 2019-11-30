@@ -15,21 +15,32 @@
         android:paddingVertical="8dp">
 
 
+        <ToggleButton
+            android:id="@+id/multiple_vehicle_toggle"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:textOn="Multiple Vehicle"
+            android:textOff="Single Vehicle"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="3.5dp"
+            android:checked="false"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_quantity_text_input"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
             android:paddingVertical="10dp"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            android:layout_toEndOf="@+id/multiple_vehicle_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/vehicle_quantity"
                 android:hint="Vehicle Quantity"
-
                 android:inputType="number"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -37,6 +48,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            android:layout_toEndOf="@+id/people_text_input"
             android:layout_below="@+id/vehicle_quantity_text_input"
             android:paddingVertical="10dp"
             app:errorEnabled="true">
@@ -46,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/gas_price"
                 android:hint="Gas Price"
-
                 android:inputType="numberDecimal"/>
 
 
@@ -55,10 +66,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/people_text_input"
-            android:layout_width="195dp"
+            android:layout_width="98dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
-            android:layout_toEndOf="@+id/vehicle_quantity_text_input"
+            android:layout_below="@+id/vehicle_quantity_text_input"
             android:paddingVertical="10dp"
             app:errorEnabled="true">
 
@@ -66,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/people"
-                android:hint="People Quantity"
+                android:hint="People"
                 android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -76,8 +87,9 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
-            android:layout_below="@+id/gas_price_text_input"
-            android:paddingVertical="5dp"
+            android:layout_below="@+id/vehicle_quantity_text_input"
+            android:layout_toEndOf="@+id/gas_price_text_input"
+            android:paddingVertical="10dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -86,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Distance"
                 android:inputType="numberDecimal"
-                />
+            />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,9 +106,9 @@
             android:id="@+id/vehicle_consumption_text_input"
             android:layout_width="235dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/vehicle_distance_text_input"
+            android:layout_toEndOf="@+id/same_consumption_toggle"
             android:layout_below="@+id/gas_price_text_input"
-            android:paddingVertical="5dp"
+            android:paddingVertical="10dp"
             style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
             app:errorEnabled="true">
 
@@ -106,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Consumption (km/liter)"
                 android:inputType="numberDecimal"
-                />
+            />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,25 +149,23 @@
 
         <ToggleButton
             android:id="@+id/same_consumption_toggle"
-            android:layout_width="218dp"
-            android:layout_height="58dp"
-            android:layout_toEndOf="@id/gas_price_text_input"
+            android:layout_width="150dp"
+            android:layout_height="75dp"
             android:layout_below="@+id/people_text_input"
             android:textOn="Different consumption"
             android:textOff="Same consumption"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="3dp"
-            android:checked="true"
-        />
+            android:layout_marginTop="3.5dp"
+            android:checked="false"/>
 
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/vehicle_distance_text_input"
+            android:layout_below="@+id/vehicle_consumption_text_input"
             android:layout_centerHorizontal="true"
             android:text="Confirm"
-        android:backgroundTint="@color/colorDarkGreen"/>
+            android:backgroundTint="@color/colorDarkGreen"/>
 
     </RelativeLayout>
 

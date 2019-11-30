@@ -1,26 +1,25 @@
 package com.example.fuelCalculator
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.ToggleButton
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.textfield.TextInputLayout
+import org.w3c.dom.Text
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.nav_home){
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container,OverviewFragment()).commit()
-        }
 
-        drawer.closeDrawer(GravityCompat.START)
-        return true
-    }
 
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
@@ -40,18 +39,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var vehicleConsumption: DoubleArray
     private val formatter = DecimalFormat("#,##0.##")
 
+    private lateinit var context: Context
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.nav_home) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, OverviewFragment()).commit()
+        }
+
+        drawer.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
         drawer = findViewById(R.id.drawer_layout)
         var navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
 
-        val toolbar:Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        this@MainActivity.title = ("FuelCalculator") // default toolbar title
+        this@MainActivity.title = ("Fuel Calculator") // default toolbar title
 
         val toggle = ActionBarDrawerToggle(
             this, drawer, toolbar,
@@ -66,9 +79,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 OverviewFragment()
             ).commit()
             navigationView.setCheckedItem(R.id.nav_home)
-                    navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
+            navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
     }
+
+
+
 
 
     fun vehicleDistances(): DoubleArray {
