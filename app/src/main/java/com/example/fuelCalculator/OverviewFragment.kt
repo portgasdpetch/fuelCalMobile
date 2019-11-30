@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class OverviewFragment : Fragment() {
@@ -38,24 +36,33 @@ class OverviewFragment : Fragment() {
         distanceInput = view.findViewById(R.id.vehicle_distance_text_input)
         peopleInput = view.findViewById(R.id.people_text_input)
         gasPriceInput = view.findViewById(R.id.gas_price_text_input)
-        toggle = view.findViewById(R.id.multiple_vehicle_toggle)
+
+        val toggleMultipleVehicle: ToggleButton = view.findViewById(R.id.multiple_vehicle_toggle)
+        val toggleDifferentConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
+        val toggleSplit: ToggleButton = view.findViewById(R.id.split_vehicle_toggle)
 
         val confirmButton: Button = view.findViewById(R.id.btn_confirm)
         confirmButton.setOnClickListener {
             Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
         }
 
-        val toggleMultipleVehicle: ToggleButton = view.findViewById(R.id.multiple_vehicle_toggle)
+
         toggleMultipleVehicle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 vehicleQuantityInput.visibility = View.VISIBLE
+                toggleDifferentConsumption.visibility = View.VISIBLE
+                toggleSplit.visibility = View.VISIBLE
+
             } else {
                 vehicleQuantityInput.visibility = View.INVISIBLE
+                toggleDifferentConsumption.visibility = View.GONE
+                toggleSplit.visibility = View.GONE
             }
         }
 
-        val toggleSameConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
-        toggleMultipleVehicle.setOnCheckedChangeListener { _, isChecked ->
+
+
+        toggleDifferentConsumption.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // The toggle is enabled
             } else {
