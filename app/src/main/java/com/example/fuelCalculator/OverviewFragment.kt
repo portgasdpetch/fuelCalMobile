@@ -58,7 +58,7 @@ class OverviewFragment : Fragment() {
         gasPriceInput = view.findViewById(R.id.gas_price_text_input)
         vehicleQuantityEditText = view.findViewById(R.id.vehicle_quantity)
 
-        val toggleMultipleVehicle: ToggleButton = view.findViewById(R.id.multiple_vehicle_toggle)
+        val toggleMultipleVehicle: ToggleButton = view.findViewById(R.id.multiple_vehicle_title)
         val toggleDifferentConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
         val toggleSplit: ToggleButton = view.findViewById(R.id.split_vehicle_toggle)
         val confirmButton: Button = view.findViewById(R.id.btn_confirm)
