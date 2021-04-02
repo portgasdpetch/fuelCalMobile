@@ -58,44 +58,44 @@ class OverviewFragment : Fragment() {
         gasPriceInput = view.findViewById(R.id.gas_price_text_input)
         vehicleQuantityEditText = view.findViewById(R.id.vehicle_quantity)
 
-        val toggleMultipleVehicle: ToggleButton = view.findViewById(R.id.multiple_vehicle_title)
-        val toggleDifferentConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
-        val toggleSplit: ToggleButton = view.findViewById(R.id.split_vehicle_toggle)
+//        val toggleMultipleVehicle: ToggleButton = view.findViewById(R.id.multiple_vehicle_title)
+//        val toggleDifferentConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
+//        val toggleSplit: ToggleButton = view.findViewById(R.id.split_vehicle_toggle)
         val confirmButton: Button = view.findViewById(R.id.btn_confirm)
 
 
 
-
-        toggleMultipleVehicle.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                vehicleQuantityInput.isEnabled = false
-                toggleSplit.isEnabled = false
-                toggleDifferentConsumption.isEnabled = false
-                vehicleQuantityEditText.setText("1")
-            }
-            else {
-                vehicleQuantityInput.isEnabled = true
-                toggleSplit.isEnabled = true
-                if (toggleSplit.isChecked) {
-                    toggleDifferentConsumption.isEnabled = false
-                }
-                if (!toggleSplit.isChecked) {
-                    toggleDifferentConsumption.isEnabled = true
-                }
-            }
-        }
-
-        toggleSplit.setOnCheckedChangeListener { _, isChecked ->
-            toggleDifferentConsumption.isEnabled = isChecked
-        }
-
-        toggleDifferentConsumption.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                // The toggle is enabled
-            } else {
-                // The toggle is disabled
-            }
-        }
+//
+//        toggleMultipleVehicle.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked) {
+//                vehicleQuantityInput.isEnabled = false
+//                toggleSplit.isEnabled = false
+//                toggleDifferentConsumption.isEnabled = false
+//                vehicleQuantityEditText.setText("1")
+//            }
+//            else {
+//                vehicleQuantityInput.isEnabled = true
+//                toggleSplit.isEnabled = true
+//                if (toggleSplit.isChecked) {
+//                    toggleDifferentConsumption.isEnabled = false
+//                }
+//                if (!toggleSplit.isChecked) {
+//                    toggleDifferentConsumption.isEnabled = true
+//                }
+//            }
+//        }
+//
+//        toggleSplit.setOnCheckedChangeListener { _, isChecked ->
+//            toggleDifferentConsumption.isEnabled = isChecked
+//        }
+//
+//        toggleDifferentConsumption.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked) {
+//                // The toggle is enabled
+//            } else {
+//                // The toggle is disabled
+//            }
+//        }
 
         confirmButton.setOnClickListener {
             Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
