@@ -25,6 +25,24 @@
             android:layout_marginBottom="5dp"
             android:textSize="50px"
             android:textStyle="bold"/>
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/people_text_input"
+            android:layout_marginBottom="10dp"
+            android:background="#ff9703" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/vehicle_consumption_text_input"
+            android:layout_marginBottom="10dp"
+            android:background="#ff9703"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/outlinedButton"
@@ -96,7 +114,7 @@
             android:id="@+id/gas_price_text_input"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_toEndOf="@+id/vehicle_distance_text_input"
             android:layout_below="@+id/vehicle_1_title"
             android:layout_marginHorizontal="15dp"
@@ -162,9 +180,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vehicle 1"
-            android:layout_below="@+id/people_text_input"
+            android:layout_below="@+id/view1"
             android:layout_marginLeft="8dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="6dp"
             android:textSize="50px"
             android:textStyle="bold"/>
 
@@ -173,7 +191,7 @@
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_below="@+id/vehicle_1_title"
             app:errorEnabled="true" >
 
@@ -192,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/vehicle_distance_text_input"
             android:layout_marginHorizontal="15dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
