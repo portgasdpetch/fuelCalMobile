@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -13,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.*
 import org.w3c.dom.Text
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -40,8 +42,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         drawer = findViewById(R.id.drawer_layout)
         var navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
@@ -66,7 +66,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.setCheckedItem(R.id.nav_home)
             navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
+
+        val button1 = findViewById<Button>(R.id.outlinedButton1)
+        val button2 = findViewById<Button>(R.id.outlinedButton2)
+        val button3 = findViewById<Button>(R.id.outlinedButton3)
+        val button4 = findViewById<Button>(R.id.outlinedButton4)
+//        val button5: Button = findViewById(R.id.outlinedButton1)
+
+//        button1.setOnClickListener{
+//            button1.backgroundTintList
+//        }
     }
+
 
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {

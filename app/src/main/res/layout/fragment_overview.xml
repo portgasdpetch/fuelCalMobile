@@ -44,8 +44,16 @@
             android:background="#ff9703"
             android:visibility="gone"/>
 
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/multiple_vehicle_title"
+            android:paddingHorizontal="20dp"
+            >
+
         <Button
-            android:id="@+id/outlinedButton"
+            android:id="@+id/outlinedButton1"
             android:layout_width="82dp"
             android:layout_height="wrap_content"
             android:text="1"
@@ -53,7 +61,7 @@
             android:layout_below="@+id/multiple_vehicle_title"
             android:textColor="#000000"
             app:backgroundTint="@android:color/holo_orange_light"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"/>
 
         <Button
             android:id="@+id/outlinedButton2"
@@ -61,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="2"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_toEndOf="@+id/outlinedButton"
+            android:layout_toEndOf="@+id/outlinedButton1"
             android:layout_below="@+id/multiple_vehicle_title"
             android:textColor="#000000"
             android:layout_marginLeft="8dp"/>
@@ -85,10 +93,11 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_below="@+id/multiple_vehicle_title"
             android:layout_toEndOf="@+id/outlinedButton3"
-
             android:textColor="#000000"
             android:layout_marginLeft="8dp"
             android:visibility="visible"/>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_quantity_text_input"
@@ -96,7 +105,7 @@
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:errorEnabled="true"
-            android:layout_below="@+id/outlinedButton"
+            android:layout_below="@+id/toggleButton"
             android:layout_marginHorizontal="15dp"
             android:visibility="gone">
 
@@ -200,7 +209,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Distance"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@+id/gas_price"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
