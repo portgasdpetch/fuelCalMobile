@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
+    android:clickable="true"
+    android:focusable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,15 +46,15 @@
             android:layout_below="@+id/vehicle_consumption_text_input"
             android:layout_marginBottom="10dp"
             android:background="#ff9703"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/multiple_vehicle_title"
-            android:paddingHorizontal="20dp"
-            >
+<!--        <com.google.android.material.button.MaterialButtonToggleGroup-->
+<!--            android:id="@+id/toggleButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/multiple_vehicle_title"-->
+<!--            android:paddingHorizontal="20dp"-->
+<!--            >-->
 
         <Button
             android:id="@+id/outlinedButton1"
@@ -61,7 +65,7 @@
             android:layout_below="@+id/multiple_vehicle_title"
             android:textColor="#000000"
             app:backgroundTint="@android:color/holo_orange_light"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="7dp"/>
 
         <Button
             android:id="@+id/outlinedButton2"
@@ -72,7 +76,7 @@
             android:layout_toEndOf="@+id/outlinedButton1"
             android:layout_below="@+id/multiple_vehicle_title"
             android:textColor="#000000"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="6dp"/>
 
         <Button
             android:id="@+id/outlinedButton3"
@@ -83,50 +87,50 @@
             android:layout_below="@+id/multiple_vehicle_title"
             android:layout_toEndOf="@+id/outlinedButton2"
             android:textColor="#000000"
-            android:layout_marginLeft="8dp"/>
+            android:layout_marginLeft="6dp"/>
 
         <Button
             android:id="@+id/outlinedButton4"
-            android:layout_width="88dp"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
             android:text="select"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_below="@+id/multiple_vehicle_title"
             android:layout_toEndOf="@+id/outlinedButton3"
             android:textColor="#000000"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="6dp"
             android:visibility="visible"/>
 
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+<!--    </com.google.android.material.button.MaterialButtonToggleGroup>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_quantity_text_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:errorEnabled="true"
-            android:layout_below="@+id/toggleButton"
+            android:layout_below="@+id/outlinedButton1"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="4dp"
             android:visibility="gone">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/vehicle_quantity"
-                android:hint="Amount"
-                android:inputType="number"
-                android:enabled="false"/>
+                android:hint="Amount of Vehicle"
+                android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/gas_price_text_input"
-            android:layout_width="160dp"
+            android:layout_width="1800dp"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_toEndOf="@+id/vehicle_distance_text_input"
             android:layout_below="@+id/vehicle_1_title"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="4dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -191,20 +195,21 @@
             android:text="Vehicle 1"
             android:layout_below="@+id/view1"
             android:layout_marginLeft="8dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="10dp"
             android:textSize="50px"
             android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/vehicle_distance_text_input"
-            android:layout_width="160dp"
+            android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="4dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_below="@+id/vehicle_1_title"
             app:errorEnabled="true" >
 
-            <com.google.android.material.textfield.TextInputEditText
+             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/vehicle_distance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,6 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/vehicle_distance_text_input"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="4dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:errorEnabled="true">
 
@@ -250,7 +256,7 @@
             android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/vehicle_consumption_text_input"
+            android:layout_below="@+id/view2"
             android:layout_centerHorizontal="true"
             android:text="Confirm"
             android:backgroundTint="@color/colorDarkGreen"/>

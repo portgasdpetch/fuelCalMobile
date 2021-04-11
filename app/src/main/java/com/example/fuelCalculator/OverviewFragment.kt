@@ -1,6 +1,7 @@
 package com.example.fuelCalculator
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +63,43 @@ class OverviewFragment : Fragment() {
 //        val toggleDifferentConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
 //        val toggleSplit: ToggleButton = view.findViewById(R.id.split_vehicle_toggle)
         val confirmButton: Button = view.findViewById(R.id.btn_confirm)
+        val button1 = view.findViewById<Button>(R.id.outlinedButton1)
+        val button2 = view.findViewById<Button>(R.id.outlinedButton2)
+        val button3 = view.findViewById<Button>(R.id.outlinedButton3)
+        val button4 = view.findViewById<Button>(R.id.outlinedButton4)
+
+        button1.setOnClickListener {
+            button1.setBackgroundColor(Color.parseColor("#FFBB33"))
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            vehicleQuantityInput.visibility = View.GONE
+        }
+
+        button2.setOnClickListener{
+            button2.setBackgroundColor(Color.parseColor("#FFBB33"))
+            button1.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            vehicleQuantityInput.visibility = View.GONE
+        }
+
+        button3.setOnClickListener{
+            button3.setBackgroundColor(Color.parseColor("#FFBB33"))
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button1.setBackgroundColor(Color.TRANSPARENT)
+            button4.setBackgroundColor(Color.TRANSPARENT)
+            vehicleQuantityInput.visibility = View.GONE
+        }
+
+        button4.setOnClickListener{
+            button4.setBackgroundColor(Color.parseColor("#FFBB33"))
+            button2.setBackgroundColor(Color.TRANSPARENT)
+            button3.setBackgroundColor(Color.TRANSPARENT)
+            button1.setBackgroundColor(Color.TRANSPARENT)
+            vehicleQuantityInput.visibility = View.VISIBLE
+        }
+
 
 
 

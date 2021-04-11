@@ -1,25 +1,24 @@
 package com.example.fuelCalculator
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import android.widget.ToggleButton
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.*
-import org.w3c.dom.Text
-import java.math.RoundingMode
-import java.text.DecimalFormat
-import java.util.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,7 +29,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.nav_home) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, OverviewFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_container,
+                OverviewFragment()
+            ).commit()
         }
 
         drawer.closeDrawer(GravityCompat.START)
@@ -67,18 +69,27 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
 
-        val button1 = findViewById<Button>(R.id.outlinedButton1)
-        val button2 = findViewById<Button>(R.id.outlinedButton2)
-        val button3 = findViewById<Button>(R.id.outlinedButton3)
-        val button4 = findViewById<Button>(R.id.outlinedButton4)
-//        val button5: Button = findViewById(R.id.outlinedButton1)
-
-//        button1.setOnClickListener{
-//            button1.backgroundTintList
-//        }
     }
 
+    //clear focus when press outside textView
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    v.clearFocus()
+                    val imm: InputMethodManager =
+                        getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
+    }
 
+    //double tab back to exit
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
