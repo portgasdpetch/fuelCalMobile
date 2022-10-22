@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FuelCalculator</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="gas_consumed">Gas consumed</string>
+    <string name="used_gas_price">Used Gas\'s price</string>
+    <string name="gas_price_per_person">Gas price per person</string>
+    <string name="price_per_distance">Price per distance</string>
+    <string name="fbold"><b></b></string>
+</resources>

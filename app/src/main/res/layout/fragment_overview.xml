@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
+    android:clickable="true"
+    android:focusable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/root_relative_layout"
+        android:paddingVertical="8dp">
+
+
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/multiple_vehicle_title"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="8dp"-->
+<!--            android:layout_marginTop="3.5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:text="Amount of Vehicle"-->
+<!--            android:textSize="50px"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/view1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="2dp"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_below="@+id/people_text_input"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="#ff9703" />-->
+
+<!--        underline-->
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btn_confirm"
+            android:layout_marginBottom="10dp"
+            android:background="#ff9703"
+            android:visibility="gone"/>
+
+<!--        <com.google.android.material.button.MaterialButtonToggleGroup-->
+<!--            android:id="@+id/toggleButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/multiple_vehicle_title"-->
+<!--            android:paddingHorizontal="20dp"-->
+<!--            >-->
+
+<!--        <NumberPicker-->
+<!--            android:id="@+id/vehicle_amount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_toEndOf="@+id/multiple_vehicle_title">-->
+
+<!--        </NumberPicker>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/outlinedButton1"-->
+<!--            android:layout_width="82dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="1"-->
+<!--            style="?attr/materialButtonOutlinedStyle"-->
+<!--            android:layout_below="@+id/multiple_vehicle_title"-->
+<!--            android:textColor="#000000"-->
+<!--            app:backgroundTint="@android:color/holo_orange_light"-->
+<!--            android:layout_marginLeft="7dp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/outlinedButton2"-->
+<!--            android:layout_width="82dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="2"-->
+<!--            style="?attr/materialButtonOutlinedStyle"-->
+<!--            android:layout_toEndOf="@+id/outlinedButton1"-->
+<!--            android:layout_below="@+id/multiple_vehicle_title"-->
+<!--            android:textColor="#000000"-->
+<!--            android:layout_marginLeft="6dp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/outlinedButton3"-->
+<!--            android:layout_width="82dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="3"-->
+<!--            style="?attr/materialButtonOutlinedStyle"-->
+<!--            android:layout_below="@+id/multiple_vehicle_title"-->
+<!--            android:layout_toEndOf="@+id/outlinedButton2"-->
+<!--            android:textColor="#000000"-->
+<!--            android:layout_marginLeft="6dp"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/outlinedButton4"-->
+<!--            android:layout_width="89dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="select"-->
+<!--            style="?attr/materialButtonOutlinedStyle"-->
+<!--            android:layout_below="@+id/multiple_vehicle_title"-->
+<!--            android:layout_toEndOf="@+id/outlinedButton3"-->
+<!--            android:textColor="#000000"-->
+<!--            android:layout_marginLeft="6dp"-->
+<!--            android:visibility="visible"/>-->
+
+<!--    </com.google.android.material.button.MaterialButtonToggleGroup>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/vehicle_quantity_text_input"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_below="@+id/vehicle_amount"-->
+<!--            android:layout_marginHorizontal="15dp"-->
+<!--            android:layout_marginVertical="4dp"-->
+<!--            android:visibility="gone">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:id="@+id/vehicle_quantity"-->
+<!--                android:hint="Amount of Vehicle"-->
+<!--                android:inputType="number"/>-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/gas_price_text_input"
+            android:layout_width="1800dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_toEndOf="@+id/vehicle_distance_text_input"
+            android:layout_below="@+id/vehicle_1_title"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="1dp"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gas_price"
+                android:hint="Gas Price"
+                android:inputType="numberDecimal"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/people_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount of People"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="50px"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/people_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_below="@+id/people_title"
+            android:layout_marginHorizontal="15dp"
+            app:errorEnabled="true"
+            android:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/people"
+                android:hint="Amount of People"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <ToggleButton-->
+<!--            android:id="@+id/split_vehicle_toggle"-->
+<!--            android:layout_width="147dp"-->
+<!--            android:layout_height="75dp"-->
+<!--            android:textOn="Combined"-->
+<!--            android:textOff="Split"-->
+<!--            android:layout_below="@+id/vehicle_quantity_text_input"-->
+<!--            android:layout_marginLeft="8dp"-->
+<!--            android:layout_marginTop="3.5dp"-->
+<!--            android:checked="true"-->
+<!--            android:visibility="visible"-->
+<!--        android:enabled="false"/>-->
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_distance_text_input"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="1dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_below="@+id/vehicle_1_title"
+            app:errorEnabled="true" >
+
+             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Distance"
+                android:inputType="numberDecimal"
+                android:nextFocusDown="@+id/gas_price"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/vehicle_consumption_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicle_distance_text_input"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="4dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/vehicle_consumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Consumption (km/liter)"
+                android:inputType="numberDecimal"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/vehicle_1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle"
+            android:layout_below="@id/people_text_input"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="50px"
+            android:textStyle="bold"/>
+
+<!--        <ToggleButton-->
+<!--            android:id="@+id/same_consumption_toggle"-->
+<!--            android:layout_width="147dp"-->
+<!--            android:layout_height="75dp"-->
+<!--            android:layout_below="@+id/vehicle_distance_text_input"-->
+<!--            android:textOn="Same consumption"-->
+<!--            android:textOff="Different consumption"-->
+<!--            android:layout_marginLeft="8dp"-->
+<!--            android:layout_marginTop="3.5dp"-->
+<!--            android:checked="false"-->
+<!--            android:visibility="visible"-->
+<!--        android:enabled="false"/>-->
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_below="@+id/vehicle_consumption_text_input"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="Calculate"
+            android:backgroundTint="@color/colorDarkGreen"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/output"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view2"
+            android:text="Lorem ipsum \n asd \n asd \n asd \n asd \n asd \n asd \n asd \n asd"
+            android:visibility="gone"
+            tools:visibility="visible">
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/outputAns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view2"
+            android:layout_toEndOf="@+id/output"
+            android:text="dsa"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:visibility="visible">
+        </com.google.android.material.textview.MaterialTextView>
+
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

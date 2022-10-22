@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
+    android:clickable="true"
+    android:focusable="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/root_relative_layout"
+        android:paddingVertical="8dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/restriction0TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginHorizontal="15dp"
+            app:errorEnabled="false"
+            android:hint="Non-restriction"
+            android:visibility="visible">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/restriction0EditText"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/restriction1TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginHorizontal="15dp"
+            app:errorEnabled="false"
+            android:hint="Restriction"
+            android:layout_below="@id/restriction0TextInput"
+            android:visibility="visible">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/restriction1EditText"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/restriction2TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginHorizontal="15dp"
+            app:errorEnabled="false"
+            android:hint="Restriction"
+            android:visibility="visible"
+            android:layout_below="@id/restriction1TextInput">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/restriction2EditText"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:chipSpacing="5dp">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_1"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="input_1"
+            android:visibility="visible"
+            tools:visibility="gone"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:text="input_2"
+            android:visibility="visible"
+            tools:visibility="gone"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:text="input_3"
+            android:visibility="visible"
+            tools:visibility="gone"/>
+        </com.google.android.material.chip.ChipGroup>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/restriction2TextInput"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/shuffle_button"
+            android:text="Shuffle!"
+            android:layout_marginTop="24dp">
+
+        </Button>
+
+    </RelativeLayout>
+
+</LinearLayout>
