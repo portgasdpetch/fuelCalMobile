@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
 
+
     private lateinit var context: Context
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -77,15 +78,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-
+        //change back to fuel after complete
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                OverviewFragment()
+                ShuffleFragment()
             ).commit()
-            navigationView.setCheckedItem(R.id.nav_calculator)
+            navigationView.setCheckedItem(R.id.nav_shuffle)
             navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
+        //delete this after complete
+        this@MainActivity.title = ("Balance Shuffle")
+        toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
 
     }
 

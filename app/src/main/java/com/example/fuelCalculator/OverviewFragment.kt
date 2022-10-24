@@ -254,7 +254,7 @@ class OverviewFragment : Fragment() {
         } else {
             line2.visibility = View.VISIBLE
             output.visibility = View.VISIBLE
-            outputAns.visibility = View.VISIBLE
+//            outputAns.visibility = View.VISIBLE
 //            output.text = " Total distances travelled : " + formatter.format(distanceInputEditTextNumber) +
 //                    "\n Total gas consumed : " + calGasConsumed() +
 //                    "\n Total people : " + formatter.format(peopleEditTextNumber) +
