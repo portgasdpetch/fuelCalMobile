@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,8 +11,8 @@
     android:descendantFocusability="beforeDescendants"
     android:clickable="true"
     android:focusable="true"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:id="@+id/root_constraint_layout">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,48 +20,60 @@
         android:id="@+id/root_relative_layout"
         android:paddingVertical="8dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/restriction0TextInput"
+        <TextView
+            android:id="@+id/restriction0TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="false"
             android:hint="Non-restriction"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:paddingLeft="10dp"
+            style="@style/TextAppearance.AppCompat.Title" />
+        <com.hootsuite.nachos.NachoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="false"
+            android:id="@+id/restriction0NachoText"
+            android:inputType="text"
+            android:layout_below="@+id/restriction0TextView"
+            android:paddingHorizontal="14dp"
+            android:singleLine="false"/>
 
 
-            <com.hootsuite.nachos.NachoTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/restriction0EditText"
-                android:inputType="text"
-                android:singleLine="false"
-                android:paddingHorizontal="14dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/restriction1TextInput"
+<!--        <com.hootsuite.nachos.NachoTextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="63dp"-->
+<!--            android:id="@+id/restriction1NachoText"-->
+<!--            android:inputType="text"-->
+<!--            android:singleLine="false"-->
+<!--            android:paddingHorizontal="14dp"-->
+<!--            android:layout_alignBottom="@+id/restriction1TextInput"/>-->
+        <TextView
+            android:id="@+id/restriction1TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
             app:errorEnabled="false"
             android:hint="Restriction1"
             app:boxBackgroundColor="@android:color/transparent"
-            android:layout_below="@id/restriction0TextInput"
-            android:visibility="visible">
+            android:layout_below="@id/restriction0NachoText"
+            android:visibility="visible"
+            android:paddingLeft="10dp"
+            style="@style/TextAppearance.AppCompat.Title"/>
 
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/restriction1EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <com.hootsuite.nachos.NachoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/restriction1NachoText"
+            android:inputType="text"
+            android:paddingHorizontal="14dp"
+            android:layout_below="@id/restriction1TextView"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/restriction2TextInput"
+        <TextView
+            android:id="@+id/restriction2TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
@@ -69,60 +81,23 @@
             android:hint="Restriction2"
             android:visibility="visible"
             app:boxBackgroundColor="@android:color/transparent"
-            android:layout_below="@id/restriction1TextInput">
+            android:layout_below="@id/restriction1NachoText"
+            android:paddingLeft="10dp"
+            style="@style/TextAppearance.AppCompat.Title" />
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/restriction2EditText"
-                android:inputType="text"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.chip.ChipGroup
+        <com.hootsuite.nachos.NachoTextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:chipSpacing="5dp"
-            app:singleLine="false"
-            android:id="@+id/chip_group">
+            android:layout_height="wrap_content"
+            android:id="@+id/restriction2NachoText"
+            android:inputType="text"
+            android:paddingHorizontal="14dp"
+            android:layout_below="@id/restriction2TextView"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_1"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="input_1"
-                android:checkable="false"
-                android:visibility="gone"
-                tools:visibility="gone" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_2"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="input_2"
-                android:checkable="false"
-                android:visibility="gone"
-                tools:visibility="gone" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_3"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="input_3"
-                android:checkable="false"
-                android:visibility="gone"
-                tools:visibility="gone" />
-
-        </com.google.android.material.chip.ChipGroup>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/restriction2TextInput"
+            android:layout_below="@+id/restriction2NachoText"
             android:layout_centerHorizontal="true"
             android:id="@+id/shuffle_button"
             android:text="Shuffle!"
@@ -130,7 +105,46 @@
             android:layout_marginHorizontal="24dp">
 
         </Button>
+        <View
+        android:id="@+id/view_underline"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/shuffle_button"
+        android:layout_marginBottom="10dp"
+        android:background="#ff9703"
+        android:visibility="gone"></View>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="8dp"
+            android:layout_below="@+id/view_underline"
+            android:id="@+id/recyclerView"
+            android:padding="10dp"
+            android:visibility="visible"/>
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/output"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/view_underline"-->
+<!--            android:text=" Lorem ipsum"-->
+<!--            android:visibility="gone"-->
+<!--            tools:visibility="gone"-->
+<!--            android:padding="10dp">-->
+<!--        </com.google.android.material.textview.MaterialTextView>-->
 
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/output2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/output"-->
+<!--            android:text=" Lorem ipsum"-->
+<!--            android:visibility="gone"-->
+<!--            tools:visibility="gone"-->
+<!--            android:padding="10dp">-->
+
+<!--        </com.google.android.material.textview.MaterialTextView>-->
     </RelativeLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
