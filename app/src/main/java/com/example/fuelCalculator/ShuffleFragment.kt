@@ -29,9 +29,8 @@ class ShuffleFragment : Fragment() {
     private lateinit var nachosChip0:NachoTextView;private lateinit var nachosChip1:NachoTextView;private lateinit var nachosChip2:NachoTextView
     private lateinit var randomElements:List<String>
     private val numberOfElements = 2
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MyAdapter
-    private var movies = listOf("Ae1",
+    private var recyclerView:RecyclerView? = null
+    var movies = listOf("Ae1",
         "Ae2",
         "Ae3",
         "Ae4")
@@ -59,13 +58,12 @@ class ShuffleFragment : Fragment() {
         nachosChip0.enableEditChipOnTouch(false,false)
         line.visibility = View.VISIBLE
 //        output = view.findViewById(R.id.output)
-        val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = layoutManager
-        adapter = context?.let { MyAdapter(movies, it) }!!
-        recyclerView.adapter = adapter
+        recyclerView!!.layoutManager = LinearLayoutManager(context)
+        val itemAdapter = MyAdapter(movies,context)
+        recyclerView!!.adapter = itemAdapter
         shuffleButton.setOnClickListener {
-//            shufflePlayer()
+            shufflePlayer()
 
             Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
         }
