@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
+            android:layout_marginVertical="6dp"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="false"
             android:hint="Non-restriction"
@@ -101,7 +102,7 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/shuffle_button"
             android:text="Shuffle!"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="24dp">
 
         </Button>
@@ -115,14 +116,16 @@
         android:layout_marginBottom="10dp"
         android:background="#ff9703"
         android:visibility="gone"></View>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteY="8dp"
-            android:layout_below="@+id/view_underline"
-            android:id="@+id/recyclerView"
-            android:padding="10dp"
-            android:visibility="visible"/>
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:layout_editor_absoluteY="8dp"-->
+<!--            android:layout_below="@+id/view_underline"-->
+<!--            android:id="@+id/recyclerView"-->
+<!--            android:padding="10dp"-->
+<!--            android:visibility="visible"/>-->
+
 <!--        <com.google.android.material.textview.MaterialTextView-->
 <!--            android:id="@+id/output"-->
 <!--            android:layout_width="wrap_content"-->

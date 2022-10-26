@@ -29,11 +29,11 @@ class ShuffleFragment : Fragment() {
     private lateinit var nachosChip0:NachoTextView;private lateinit var nachosChip1:NachoTextView;private lateinit var nachosChip2:NachoTextView
     private lateinit var randomElements:List<String>
     private val numberOfElements = 2
-    private var recyclerView:RecyclerView? = null
-    var movies = listOf("Ae1",
-        "Ae2",
-        "Ae3",
-        "Ae4")
+//    private var recyclerView:RecyclerView? = null
+//    private var movies = listOf("Ae1",
+//        "Ae2",
+//        "Ae3",
+//        "Ae4")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,10 +58,10 @@ class ShuffleFragment : Fragment() {
         nachosChip0.enableEditChipOnTouch(false,false)
         line.visibility = View.VISIBLE
 //        output = view.findViewById(R.id.output)
-        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
-        val itemAdapter = MyAdapter(movies,context)
-        recyclerView!!.adapter = itemAdapter
+//        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+//        recyclerView!!.layoutManager = LinearLayoutManager(context)
+//        val itemAdapter = MyAdapter(movies,context)
+//        recyclerView!!.adapter = itemAdapter
         shuffleButton.setOnClickListener {
             shufflePlayer()
 
@@ -78,13 +78,9 @@ class ShuffleFragment : Fragment() {
         while(i<(list.size/2)){
             randomElements = list.shuffled().take(numberOfElements).toList()
             list.removeIf { x -> randomElements.contains(x) }
-//            val itemAdapter = MyAdapter(randomElements,requireActivity())
-//            recyclerView!!.adapter = itemAdapter
             i += 1
         }
 
-
-        line.visibility = View.VISIBLE
 //        output.visibility = View.VISIBLE
 //        output2.visibility = View.VISIBLE
 //        output2.text = list.toString()

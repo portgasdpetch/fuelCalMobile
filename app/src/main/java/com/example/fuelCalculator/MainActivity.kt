@@ -16,9 +16,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_shuffle.*
 import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -29,6 +32,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
 
+    private var recyclerView: RecyclerView? = null
+    private var movies = listOf("Ae1",
+        "Ae2",
+        "Ae3",
+        "Ae4")
 
     private lateinit var context: Context
 
@@ -62,6 +70,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView!!.layoutManager = LinearLayoutManager(this)
+        val itemAdapter = MyAdapter(movies,this)
+        recyclerView!!.adapter = itemAdapter
 
         drawer = findViewById(R.id.drawer_layout)
         var navigationView: NavigationView = findViewById(R.id.nav_view)
