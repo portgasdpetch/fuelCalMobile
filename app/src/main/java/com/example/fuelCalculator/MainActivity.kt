@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
 
-    private var recyclerView: RecyclerView? = null
-    private var movies = listOf("Ae1",
-        "Ae2",
-        "Ae3",
-        "Ae4")
+//    private var recyclerView: RecyclerView? = null
+//    private var movies = listOf("Ae1",
+//        "Ae2",
+//        "Ae3",
+//        "Ae4")
 
     private lateinit var context: Context
 
@@ -71,10 +71,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView!!.layoutManager = LinearLayoutManager(this)
-        val itemAdapter = MyAdapter(movies,this)
-        recyclerView!!.adapter = itemAdapter
+//        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+//        recyclerView!!.layoutManager = LinearLayoutManager(this)
+//        val itemAdapter = MyAdapter(movies,this)
+//        recyclerView!!.adapter = itemAdapter
 
         drawer = findViewById(R.id.drawer_layout)
         var navigationView: NavigationView = findViewById(R.id.nav_view)

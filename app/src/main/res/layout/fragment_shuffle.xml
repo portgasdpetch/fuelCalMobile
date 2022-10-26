@@ -35,7 +35,6 @@
         <com.hootsuite.nachos.NachoTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollHorizontally="false"
             android:id="@+id/restriction0NachoText"
             android:inputType="text"
             android:layout_below="@+id/restriction0TextView"
@@ -106,25 +105,27 @@
             android:layout_marginHorizontal="24dp">
 
         </Button>
-        <View
-        android:id="@+id/view_underline"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/shuffle_button"
-        android:layout_marginBottom="10dp"
-        android:background="#ff9703"
-        android:visibility="gone"></View>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            tools:layout_editor_absoluteY="8dp"-->
-<!--            android:layout_below="@+id/view_underline"-->
-<!--            android:id="@+id/recyclerView"-->
-<!--            android:padding="10dp"-->
-<!--            android:visibility="visible"/>-->
+        <View
+            android:id="@+id/view_underline"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/shuffle_button"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#ff9703"
+            android:visibility="gone"
+            tools:visibility="visible"></View>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="8dp"
+            android:layout_below="@+id/view_underline"
+            android:id="@+id/recyclerView"
+            android:padding="10dp"
+            android:visibility="visible"/>
 
 <!--        <com.google.android.material.textview.MaterialTextView-->
 <!--            android:id="@+id/output"-->
@@ -141,13 +142,14 @@
 <!--            android:id="@+id/output2"-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/output"-->
+<!--            android:layout_below="@+id/view_underline"-->
+<!--            android:layout_marginTop="305dp"-->
+<!--            android:gravity="end"-->
+<!--            android:padding="10dp"-->
 <!--            android:text=" Lorem ipsum"-->
 <!--            android:visibility="gone"-->
-<!--            tools:visibility="gone"-->
-<!--            android:padding="10dp">-->
+<!--            tools:visibility="gone" />-->
 
-<!--        </com.google.android.material.textview.MaterialTextView>-->
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

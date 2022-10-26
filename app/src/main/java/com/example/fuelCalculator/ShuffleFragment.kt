@@ -25,15 +25,17 @@ class ShuffleFragment : Fragment() {
     private lateinit var restriction1:TextInputEditText
     private lateinit var restriction2:TextInputEditText
     private lateinit var output:MaterialTextView
+    private lateinit var output2:MaterialTextView
     private lateinit var line:View
     private lateinit var nachosChip0:NachoTextView;private lateinit var nachosChip1:NachoTextView;private lateinit var nachosChip2:NachoTextView
     private lateinit var randomElements:List<String>
     private val numberOfElements = 2
-//    private var recyclerView:RecyclerView? = null
+    private var recyclerView:RecyclerView? = null
 //    private var movies = listOf("Ae1",
 //        "Ae2",
 //        "Ae3",
-//        "Ae4")
+//        "Ae4",
+//        "Ae8")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,10 +60,10 @@ class ShuffleFragment : Fragment() {
         nachosChip0.enableEditChipOnTouch(false,false)
         line.visibility = View.VISIBLE
 //        output = view.findViewById(R.id.output)
-//        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-//        recyclerView!!.layoutManager = LinearLayoutManager(context)
-//        val itemAdapter = MyAdapter(movies,context)
-//        recyclerView!!.adapter = itemAdapter
+//        output2 = view.findViewById(R.id.output2)
+        recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView!!.layoutManager = LinearLayoutManager(context)
+
         shuffleButton.setOnClickListener {
             shufflePlayer()
 
@@ -72,18 +74,22 @@ class ShuffleFragment : Fragment() {
     private fun shufflePlayer(){
         //list of chip value
         val list = nachosChip0.chipValues
-        randomElements = list.shuffled().take(numberOfElements).toList()
-        list.removeIf { x -> randomElements.contains(x) }
+//        randomElements = list.shuffled().take(numberOfElements).toList()
+//        list.removeIf { x -> randomElements.contains(x) }
         var i:Int=0
-        while(i<(list.size/2)){
-            randomElements = list.shuffled().take(numberOfElements).toList()
-            list.removeIf { x -> randomElements.contains(x) }
+        while(i<list.size){
+            val itemAdapter = MyAdapter(list,requireActivity())
+            recyclerView!!.adapter = itemAdapter
+//        while(i<(list.size/2)){
+//            randomElements = list.shuffled().take(numberOfElements).toList()
+//            list.removeIf { x -> randomElements.contains(x) }
+//            val itemAdapter = MyAdapter(randomElements,requireActivity())
+//            recyclerView!!.adapter = itemAdapter
             i += 1
         }
 
 //        output.visibility = View.VISIBLE
 //        output2.visibility = View.VISIBLE
-//        output2.text = list.toString()
 //        output.text = randomElements.toString().replace("[","").replace("]","")
 //        output.text = nachosChip0.text
 //        output.text = nachosChip0.allChips.toString()

@@ -44,14 +44,14 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteY="8dp"
-            android:layout_below="@+id/view_underline"
-            android:id="@+id/recyclerView"
-            android:padding="10dp"
-            android:visibility="visible"/>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:layout_editor_absoluteY="8dp"-->
+<!--            android:layout_below="@+id/view_underline"-->
+<!--            android:id="@+id/recyclerView"-->
+<!--            android:padding="10dp"-->
+<!--            android:visibility="visible"/>-->
 
     </com.google.android.material.navigation.NavigationView>
 
