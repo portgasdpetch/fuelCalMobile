@@ -119,25 +119,42 @@
             tools:visibility="visible"></View>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteY="8dp"
-            android:layout_below="@+id/view_underline"
             android:id="@+id/recyclerView"
-            android:padding="10dp"
-            android:visibility="visible"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_underline"
+            android:paddingLeft="10dp"
+            android:visibility="visible"
+            tools:layout_editor_absoluteY="8dp" />
 
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/output"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/view_underline"-->
-<!--            android:text=" Lorem ipsum"-->
-<!--            android:visibility="gone"-->
-<!--            tools:visibility="gone"-->
-<!--            android:padding="10dp">-->
-<!--        </com.google.android.material.textview.MaterialTextView>-->
+        <TextView
+            android:id="@+id/output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/output2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/output3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:visibility="gone"/>
 <!--        <com.google.android.material.textview.MaterialTextView-->
 <!--            android:id="@+id/output2"-->
 <!--            android:layout_width="wrap_content"-->
