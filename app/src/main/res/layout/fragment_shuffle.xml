@@ -25,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
-            android:layout_marginVertical="6dp"
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="false"
             android:hint="Non-restriction"
@@ -39,7 +38,9 @@
             android:inputType="text"
             android:layout_below="@+id/restriction0TextView"
             android:paddingHorizontal="14dp"
-            android:singleLine="false"/>
+            android:singleLine="false"
+            app:chipTextColor="@color/colorAccent"
+            app:chipVerticalSpacing="4dp"/>
 
 
 <!--        <com.hootsuite.nachos.NachoTextView-->
@@ -56,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
             app:errorEnabled="false"
-            android:hint="Restriction1"
+            android:hint="Restriction"
             app:boxBackgroundColor="@android:color/transparent"
             android:layout_below="@id/restriction0NachoText"
             android:visibility="visible"
@@ -70,7 +71,10 @@
             android:id="@+id/restriction1NachoText"
             android:inputType="text"
             android:paddingHorizontal="14dp"
-            android:layout_below="@id/restriction1TextView"/>
+            android:layout_below="@id/restriction1TextView"
+            app:chipTextColor="#FFFFFE"
+            app:chipBackground="#ff725c"
+            app:chipVerticalSpacing="4dp"/>
 
         <TextView
             android:id="@+id/restriction2TextView"
@@ -91,7 +95,10 @@
             android:id="@+id/restriction2NachoText"
             android:inputType="text"
             android:paddingHorizontal="14dp"
-            android:layout_below="@id/restriction2TextView"/>
+            android:layout_below="@id/restriction2TextView"
+            app:chipTextColor="#FFFFFE"
+            app:chipBackground="#f279cd"
+            app:chipVerticalSpacing="4dp"/>
 
 
         <Button
@@ -141,7 +148,7 @@
             android:id="@+id/output2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recyclerView"
+            android:layout_below="@+id/output"
             android:text="TextView"
             android:textSize="20sp"
             android:paddingLeft="10dp"
@@ -150,7 +157,7 @@
             android:id="@+id/output3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recyclerView"
+            android:layout_below="@+id/output2"
             android:text="TextView"
             android:textSize="20sp"
             android:paddingLeft="10dp"
