@@ -81,6 +81,10 @@ class ShuffleFragment : Fragment() {
         //list of chip value
         val list = nachosChip0.chipValues;val list2 = nachosChip1.chipValues;val list3 = nachosChip2.chipValues
         var i:Int=0
+        list2.shuffle()
+        randomElements = list2.take(1)
+        list3.shuffle()
+        randomElements = list3.take(1)
         while(i<=(list.size/2)){
             randomElements = list.shuffled().take(numberOfElements).toList()
             list.removeIf { x -> randomElements.contains(x) }
