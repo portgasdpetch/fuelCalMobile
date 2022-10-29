@@ -139,20 +139,33 @@ class ShuffleFragment : Fragment() {
             val list1Ceil = ceil(list1.size/numberOfElements.toDouble())
             val list2Ceil = ceil(list2.size/numberOfElements.toDouble())
             val listCeil = list1Ceil+list2Ceil
-            while (i < listCeil) {
-                list1RandomElements = list1.shuffled().take(1)
-                list1.removeIf { x -> list1RandomElements.contains(x) }
-                randomList2.add(removeSquareBracket(list1RandomElements.toString()))
-                if (i < list2Ceil) {
-                    list2RandomElements = list2.shuffled().take(1)
-                    list2.removeIf { x -> list2RandomElements.contains(x) }
-                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+
+            while (list2.size>0){
+                list2RandomElements = list2.shuffled().take(1)
+                list2.removeIf { x -> list2RandomElements.contains(x) }
+                randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                while (list1.size>0){
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList2.take(2).toString()))
                 }
-                randomList.clear()
-                randomList.add(removeSquareBracket(randomList2.toString()))
-                i += 1
             }
-        }
+
+//            while (i < listCeil) {
+//                list1RandomElements = list1.shuffled().take(1)
+//                list1.removeIf { x -> list1RandomElements.contains(x) }
+//                randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+//                if (list2.size>0) {
+//                    list2RandomElements = list2.shuffled().take(1)
+//                    list2.removeIf { x -> list2RandomElements.contains(x) }
+//                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+//                }
+//                randomList.clear()
+//                randomList.add(removeSquareBracket(randomList2.toString()))
+//                i += 1
+            }
+
 //        output2.text = "randomList: " + randomList
 
 
