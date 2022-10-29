@@ -28,6 +28,7 @@
             app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="false"
             android:hint="Non-restriction"
+            android:inputType="textMultiLine"
             android:visibility="visible"
             android:paddingLeft="10dp"
             style="@style/TextAppearance.AppCompat.Title" />
@@ -35,10 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/restriction0NachoText"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:layout_below="@+id/restriction0TextView"
             android:paddingHorizontal="14dp"
-            android:singleLine="false"
+            android:scrollHorizontally="true"
+            android:maxLines="4"
             app:chipTextColor="@color/colorAccent"
             app:chipVerticalSpacing="4dp"/>
 
@@ -69,12 +71,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/restriction1NachoText"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:paddingHorizontal="14dp"
             android:layout_below="@id/restriction1TextView"
+            android:scrollHorizontally="true"
             app:chipTextColor="#FFFFFE"
             app:chipBackground="#ff725c"
-            app:chipVerticalSpacing="4dp"/>
+            app:chipVerticalSpacing="4dp"
+            />
 
         <TextView
             android:id="@+id/restriction2TextView"
@@ -93,11 +97,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/restriction2NachoText"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:paddingHorizontal="14dp"
             android:layout_below="@id/restriction2TextView"
             app:chipTextColor="#FFFFFE"
             app:chipBackground="#f279cd"
+            android:scrollHorizontally="true"
             app:chipVerticalSpacing="4dp"/>
 
 
