@@ -140,19 +140,20 @@ class ShuffleFragment : Fragment() {
             while (i < listCeil) {
                 while (list1.size > 0) {
                     if (list2.size==0){
-                        list1RandomElements = list1.shuffled().take(2)
+                        list1RandomElements = list1.shuffled().take(numberOfElements)
                         list1.removeIf { x -> list1RandomElements.contains(x) }
-                        randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                        randomList.add(removeSquareBracket(list1RandomElements.toString()))
+
                     } else {
-                        list1RandomElements = list1.shuffled().take(1)
+                        list1RandomElements = list1.shuffled().take(numberOfElements-1)
                         list1.removeIf { x -> list1RandomElements.contains(x) }
                         randomList2.add(removeSquareBracket(list1RandomElements.toString()))
                         list2RandomElements = list2.shuffled().take(1)
                         list2.removeIf { x -> list2RandomElements.contains(x) }
                         randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                        randomList.add(removeSquareBracket(randomList2.toString()))
                     }
                 }
-                randomList.add(removeSquareBracket(randomList2.toString()))
                 i++
             }
 
@@ -204,7 +205,7 @@ class ShuffleFragment : Fragment() {
         output.text = "list1: " + list1.toString().replace("[", "").replace("]", "")
 
         output2.visibility = View.VISIBLE
-        output2.text = "list2: " + removeSquareBracket(list2.toString())
+        output2.text = "randomList: " + removeSquareBracket(randomList.toString())
         output3.visibility = View.VISIBLE
         output3.text = "randomList2: " + randomList2
 
