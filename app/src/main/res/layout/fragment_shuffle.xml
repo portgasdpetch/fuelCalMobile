@@ -86,12 +86,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="0dp"
             app:errorEnabled="false"
-            android:hint="Restriction2"
+            android:hint="Restriction 2"
             android:visibility="visible"
             app:boxBackgroundColor="@android:color/transparent"
             android:layout_below="@id/restriction1NachoText"
             android:paddingLeft="10dp"
-            style="@style/TextAppearance.AppCompat.Title" />
+            style="@style/TextAppearance.AppCompat.Title"
+            app:helperTextEnabled="true"
+            app:helperText="in case you need a restriction between players" />
 
         <com.hootsuite.nachos.NachoTextView
             android:layout_width="match_parent"

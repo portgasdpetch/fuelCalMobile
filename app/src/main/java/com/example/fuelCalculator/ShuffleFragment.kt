@@ -79,8 +79,8 @@ class ShuffleFragment : Fragment() {
         nachosChip2.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
         restriction1TextView = view.findViewById(R.id.restriction1TextView)
         restriction2TextView = view.findViewById(R.id.restriction2TextView)
-        restriction2TextView.visibility = View.GONE
-        nachosChip2.visibility = View.GONE
+//        restriction2TextView.visibility = View.GONE
+//        nachosChip2.visibility = View.GONE
 
         line.visibility = View.VISIBLE
         output = view.findViewById(R.id.output)
@@ -121,55 +121,72 @@ class ShuffleFragment : Fragment() {
         if ((list2.size == 0) && (list3.size == 0)) {
             //round up
             val list1ceil = ceil((list1.size / numberOfElements.toDouble()))
-            while (list1.size>0) {
+            while (list1.size > 0) {
                 list1RandomElements = list1.shuffled().take(numberOfElements)
                 list1.removeIf { x -> list1RandomElements.contains(x) }
                 //randomList1.add(randomElements.toString().replace("[","").replace("]",""))
                 randomList.add(removeSquareBracket(list1RandomElements.toString()))
             }
-            //if restriction1 and non-restriction are not empty
-        } else if ((list2.size != 0) && (list1.size != 0) && (list1.size > list2.size)) {
-            //shuffle with 1 restriction
+        }
+        // shuffle with 2 restriction
+        else if ((list2.size != 0) && (list1.size != 0) && (list3.size != 0)) {
             var i: Int = 0;
             val list1Ceil = ceil(list1.size / numberOfElements.toDouble())
             val list2Ceil = ceil(list2.size / numberOfElements.toDouble())
-            val listCeil = list1Ceil + list2Ceil
-
-            while (i < listCeil) {
+            val list3Ceil = ceil(list3.size / numberOfElements.toDouble())
+            val listCeil = list1Ceil + list2Ceil + list3Ceil
+            while (list1.size != 0 || list2.size != 0 || list3.size != 0) {
                 while (list1.size > 0) {
-                    if (list2.size==0){
+                    if (list2.size == 0 && list3.size == 0) {
                         list1RandomElements = list1.shuffled().take(numberOfElements)
                         list1.removeIf { x -> list1RandomElements.contains(x) }
                         randomList2.add(removeSquareBracket(list1RandomElements.toString()))
                         randomList.add(removeSquareBracket(randomList2.toString()))
                         randomList2.clear()
-
                     } else {
-                        list1RandomElements = list1.shuffled().take(numberOfElements-1)
-                        list1.removeIf { x -> list1RandomElements.contains(x) }
-                        randomList2.add(removeSquareBracket(list1RandomElements.toString()))
                         list2RandomElements = list2.shuffled().take(1)
                         list2.removeIf { x -> list2RandomElements.contains(x) }
                         randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                        list3RandomElements = list3.shuffled().take(1)
+                        list3.removeIf { x -> list3RandomElements.contains(x) }
+                        randomList2.add(removeSquareBracket(list3RandomElements.toString()))
                         randomList.add(removeSquareBracket(randomList2.toString()))
                         randomList2.clear()
                     }
                 }
-                i++
+            }
+            //if restriction1 and non-restriction are not empty
+            //shuffle with 1 restriction
+        } else if ((list2.size != 0) && (list1.size != 0)) {
+            var i: Int = 0;
+            val list1Ceil = ceil(list1.size / numberOfElements.toDouble())
+            val list2Ceil = ceil(list2.size / numberOfElements.toDouble())
+            val listCeil = list1Ceil + list2Ceil
+
+            while (list1.size != 0 || list2.size != 0) {
+                if ((list1.size >= list2.size)) {
+                    while (list1.size > 0) {
+                        if (list2.size == 0) {
+                            list1RandomElements = list1.shuffled().take(numberOfElements)
+                            list1.removeIf { x -> list1RandomElements.contains(x) }
+                            randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                            randomList.add(removeSquareBracket(randomList2.toString()))
+                            randomList2.clear()
+
+                        } else {
+                            list1RandomElements = list1.shuffled().take(numberOfElements - 1)
+                            list1.removeIf { x -> list1RandomElements.contains(x) }
+                            randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                            list2RandomElements = list2.shuffled().take(1)
+                            list2.removeIf { x -> list2RandomElements.contains(x) }
+                            randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                            randomList.add(removeSquareBracket(randomList2.toString()))
+                            randomList2.clear()
+                        }
+                    }
+                }
             }
 
-//            while (i < listCeil) {
-//                list1RandomElements = list1.shuffled().take(1)
-//                list1.removeIf { x -> list1RandomElements.contains(x) }
-//                randomList2.add(removeSquareBracket(list1RandomElements.toString()))
-//                if (list2.size>0) {
-//                    list2RandomElements = list2.shuffled().take(1)
-//                    list2.removeIf { x -> list2RandomElements.contains(x) }
-//                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
-//                }
-//                randomList.clear()
-//                randomList.add(removeSquareBracket(randomList2.toString()))
-//                i += 1
         }
 
 //        output2.text = "randomList: " + randomList
