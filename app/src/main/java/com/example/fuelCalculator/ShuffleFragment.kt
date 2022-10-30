@@ -119,15 +119,13 @@ class ShuffleFragment : Fragment() {
         //shuffle Non-restriction
         //if restrictions are empty
         if ((list2.size == 0) && (list3.size == 0)) {
-            var i: Int = 0
             //round up
             val list1ceil = ceil((list1.size / numberOfElements.toDouble()))
-            while (i < list1ceil) {
+            while (list1.size>0) {
                 list1RandomElements = list1.shuffled().take(numberOfElements)
                 list1.removeIf { x -> list1RandomElements.contains(x) }
                 //randomList1.add(randomElements.toString().replace("[","").replace("]",""))
                 randomList.add(removeSquareBracket(list1RandomElements.toString()))
-                i += 1
             }
             //if restriction1 and non-restriction are not empty
         } else if ((list2.size != 0) && (list1.size != 0) && (list1.size > list2.size)) {
@@ -142,7 +140,9 @@ class ShuffleFragment : Fragment() {
                     if (list2.size==0){
                         list1RandomElements = list1.shuffled().take(numberOfElements)
                         list1.removeIf { x -> list1RandomElements.contains(x) }
-                        randomList.add(removeSquareBracket(list1RandomElements.toString()))
+                        randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                        randomList.add(removeSquareBracket(randomList2.toString()))
+                        randomList2.clear()
 
                     } else {
                         list1RandomElements = list1.shuffled().take(numberOfElements-1)
@@ -152,6 +152,7 @@ class ShuffleFragment : Fragment() {
                         list2.removeIf { x -> list2RandomElements.contains(x) }
                         randomList2.add(removeSquareBracket(list2RandomElements.toString()))
                         randomList.add(removeSquareBracket(randomList2.toString()))
+                        randomList2.clear()
                     }
                 }
                 i++
@@ -200,14 +201,13 @@ class ShuffleFragment : Fragment() {
         val itemAdapter = MyAdapter(randomList, requireActivity())
         recyclerView!!.adapter = itemAdapter
 
-        output.visibility = View.VISIBLE
+//        output.visibility = View.VISIBLE
 //        output.text = "list1: " + list1.toString().replace("[", "").replace("]", "")
-        output.text = "list1: " + list1.toString().replace("[", "").replace("]", "")
 
-        output2.visibility = View.VISIBLE
-        output2.text = "randomList: " + removeSquareBracket(randomList.toString())
-        output3.visibility = View.VISIBLE
-        output3.text = "randomList2: " + randomList2
+//        output2.visibility = View.VISIBLE
+//        output2.text = "randomList: " + removeSquareBracket(randomList.toString())
+//        output3.visibility = View.VISIBLE
+//        output3.text = "randomList2: " + randomList2
 
 //        output2.visibility = View.VISIBLE
 //        output.text = randomElements.toString().replace("[","").replace("]","")
