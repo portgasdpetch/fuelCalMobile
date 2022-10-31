@@ -107,11 +107,20 @@
             android:scrollHorizontally="true"
             app:chipVerticalSpacing="4dp"/>
 
+        <CheckBox
+            android:id="@+id/match_restriction_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/restriction2NachoText"
+            android:clickable="false"
+            android:checked="true"
+            android:text="Matches Restrictions First" />
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/restriction2NachoText"
+            android:layout_below="@+id/match_restriction_checkbox"
             android:layout_centerHorizontal="true"
             android:id="@+id/shuffle_button"
             android:text="Shuffle!"
