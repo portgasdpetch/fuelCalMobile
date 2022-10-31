@@ -165,10 +165,11 @@ class ShuffleFragment : Fragment() {
                 output.text = removeSquareBracket(randomList2.toString())
             }
 
-            // with all randomly
+        // with all randomly
         } else {
             // shuffle with 2 restriction
             while (list1.size > 0 || list2.size > 0 || list3.size > 0) {
+                //all are equal
                 if (list1.size == list2.size && list1.size == list3.size) {
                     list1RandomElements = list1.shuffled().take(1)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
@@ -180,11 +181,8 @@ class ShuffleFragment : Fragment() {
                     list3.removeIf { x -> list3RandomElements.contains(x) }
                     randomList2.add(removeSquareBracket(list3RandomElements.toString()))
                     randomList1.add(removeSquareBracket(randomList2.take(numberOfElements).toString()))
-                    randomList2.removeIf{x -> randomList1.contains(x)}
-                    randomList.add(removeSquareBracket(randomList1.toString()))
-                    if (list1.contains(randomList2.toString())){
-
-                    }
+//                    output2.visibility = View.VISIBLE
+//                    output2.text = "RandomList1 :$randomList1"
                 }
 
 
@@ -199,24 +197,7 @@ class ShuffleFragment : Fragment() {
         //add item to adapter
         val itemAdapter = MyAdapter(randomList, requireActivity())
         recyclerView!!.adapter = itemAdapter
-
-//        output.visibility = View.VISIBLE
-//        output.text = "list1: " + list1.toString().replace("[", "").replace("]", "")
-
-//        output2.visibility = View.VISIBLE
-//        output2.text = "randomList: " + removeSquareBracket(randomList.toString())
-//        output3.visibility = View.VISIBLE
-//        output3.text = "randomList2: " + randomList2
-
-//        output2.visibility = View.VISIBLE
-//        output.text = randomElements.toString().replace("[","").replace("]","")
-//        output.text = nachosChip0.text
-//        output.text = nachosChip0.allChips.toString()
-//        output.text = nachosChip0.chipAndTokenValues.toString()
-//        output.text = nachosChip0.chipValues.toString()
     }
-
-
 }
 
 
