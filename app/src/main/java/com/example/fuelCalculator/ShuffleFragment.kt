@@ -171,21 +171,29 @@ class ShuffleFragment : Fragment() {
             while (list1.size > 0 || list2.size > 0 || list3.size > 0) {
                 //all are equal
                 if (list1.size == list2.size && list1.size == list3.size) {
-                    list1RandomElements = list1.shuffled().take(1)
-                    list1.removeIf { x -> list1RandomElements.contains(x) }
-                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
-                    list2RandomElements = list2.shuffled().take(1)
-                    list2.removeIf { x -> list2RandomElements.contains(x) }
-                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
-                    list3RandomElements = list3.shuffled().take(1)
-                    list3.removeIf { x -> list3RandomElements.contains(x) }
-                    randomList2.add(removeSquareBracket(list3RandomElements.toString()))
-                    randomList1.add(removeSquareBracket(randomList2.shuffled().take(numberOfElements).toString()))
-                    randomList2.removeIf { x -> randomList1.contains(x) }
-                    randomList.add(removeSquareBracket(randomList1.toString()))
-                    randomList1.clear()
+                    if (randomList2.size == numberOfElements){
+
+                    } else {
+                        list1RandomElements = list1.shuffled().take(1)
+                        list1.removeIf { x -> list1RandomElements.contains(x) }
+                        randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                        list2RandomElements = list2.shuffled().take(1)
+                        list2.removeIf { x -> list2RandomElements.contains(x) }
+                        randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                        list3RandomElements = list3.shuffled().take(1)
+                        list3.removeIf { x -> list3RandomElements.contains(x) }
+                        randomList2.add(removeSquareBracket(list3RandomElements.toString()))
+                        randomList1.add(
+                            removeSquareBracket(
+                                randomList2.shuffled().take(numberOfElements).toString()
+                            )
+                        )
+                        randomList2.removeIf { x -> randomList1.contains(x) }
+                        randomList.add(removeSquareBracket(randomList1.toString()))
+                        randomList1.clear()
 //                    output2.visibility = View.VISIBLE
 //                    output2.text = "RandomList1 :$randomList1"
+                    }
 
 
                 } else if (list1.size >= list2.size && list2.size > list3.size){
