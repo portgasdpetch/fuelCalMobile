@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/restriction2NachoText"
             android:checked="true"
-            android:text="Matches Restrictions First" />
+            android:text="Match Restrictions First" />
 
 
         <Button
@@ -173,6 +173,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/output2"
+            android:text="TextView"
+            android:textSize="20sp"
+            android:paddingLeft="10dp"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/output4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/output3"
             android:text="TextView"
             android:textSize="20sp"
             android:paddingLeft="10dp"

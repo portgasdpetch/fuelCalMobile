@@ -31,13 +31,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
-
-//    private var recyclerView: RecyclerView? = null
-//    private var movies = listOf("Ae1",
-//        "Ae2",
-//        "Ae3",
-//        "Ae4")
-
     private lateinit var context: Context
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
