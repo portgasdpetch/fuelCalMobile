@@ -5,18 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import com.hootsuite.nachos.NachoTextView
 import com.hootsuite.nachos.terminator.ChipTerminatorHandler
-import android.widget.CheckBox
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
-import kotlin.math.ceil
 
 class ShuffleFragment : Fragment() {
     private lateinit var nonRestriction: TextInputEditText
@@ -115,6 +113,11 @@ class ShuffleFragment : Fragment() {
         return x.replace(",", "")
     }
 
+    override fun onStop() {
+        super.onStop()
+        activity!!.finish()
+    }
+
     private fun shufflePlayer() {
         //list of chip value
         val list1 = nachosChip0.chipValues
@@ -175,7 +178,7 @@ class ShuffleFragment : Fragment() {
             // with all randomly
         } else {
 
-            //for debug
+//            for debug
 //            if (list1.isNotEmpty() && list2.isNotEmpty() && list3.isNotEmpty()) {
 //                list1RandomElements = list1.shuffled().take(1)
 //                list1.removeIf { x -> list1RandomElements.contains(x) }
@@ -192,13 +195,18 @@ class ShuffleFragment : Fragment() {
 //                randomList1.clear()
 //
 //                //return shuffled value to listX
-//                if (nachosChip0.chipValues.contains(randomList2.toString())) {
-//                    list1.add(randomList2.toString())
-//                } else if (nachosChip1.chipValues.contains(randomList2.toString())) {
-//                    list2.add(randomList2.toString())
-//                } else if (nachosChip2.chipValues.containsAll(randomList2)) {
-//                    list3.addAll(randomList2)
+//                when {
+//                    nachosChip0.chipValues.containsAll(randomList2) -> {
+//                        list1.addAll(randomList2)
+//                    }
+//                    nachosChip1.chipValues.containsAll(randomList2) -> {
+//                        list2.addAll(randomList2)
+//                    }
+//                    nachosChip2.chipValues.containsAll(randomList2) -> {
+//                        list3.addAll(randomList2)
+//                    }
 //                }
+//
 //
 //                output.visibility = View.VISIBLE
 //                output2.visibility = View.VISIBLE
@@ -207,12 +215,11 @@ class ShuffleFragment : Fragment() {
 //                output.text = "list1: "+list1
 //                output2.text = "list2: "+list2
 //                output3.text = "list3: "+list3
-//                output4.text = nachosChip2.chipValues.toString()
+//                output4.text = "randomList2: $randomList2"
 //            }
 
-            // shuffle with 2 restriction
+//             shuffle with 2 restriction
             while (list1.size > 0 || list2.size > 0 || list3.size > 0) {
-
 
                 //all are equal or none are 0
                 if (list1.isNotEmpty() && list2.isNotEmpty() && list3.isNotEmpty()) {
@@ -231,20 +238,25 @@ class ShuffleFragment : Fragment() {
                     randomList1.clear()
 
                     //return shuffled value to listX
-                    if (nachosChip0.chipValues.containsAll(randomList2)) {
-                        list1.addAll(randomList2)
-                    } else if (nachosChip1.chipValues.containsAll(randomList2)) {
-                        list2.addAll(randomList2)
-                    } else if (nachosChip2.chipValues.containsAll(randomList2)) {
-                        list3.addAll(randomList2)
+                    when {
+                        nachosChip0.chipValues.containsAll(randomList2) -> {
+                            list1.addAll(randomList2)
+                        }
+                        nachosChip1.chipValues.containsAll(randomList2) -> {
+                            list2.addAll(randomList2)
+                        }
+                        nachosChip2.chipValues.containsAll(randomList2) -> {
+                            list3.addAll(randomList2)
+                        }
                     }
+
 
                     //clear randomList2 after added
                     randomList2.clear()
 
 
                 }
-                //if list 1 is empty
+//                if list 1 is empty
                 else if (list1.isEmpty() && list2.isNotEmpty() && list3.isNotEmpty()) {
                     list2RandomElements = list2.shuffled().take(1)
                     list2.removeIf { x -> list2RandomElements.contains(x) }
@@ -255,7 +267,7 @@ class ShuffleFragment : Fragment() {
                     randomList.add(removeSquareBracket(randomList2.toString()))
                     randomList2.clear()
                 }
-                //if list2 is empty
+//                if list2 is empty
                 else if (list2.isEmpty() && list1.isNotEmpty() && list3.isNotEmpty()) {
                     list1RandomElements = list1.shuffled().take(1)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
@@ -267,7 +279,7 @@ class ShuffleFragment : Fragment() {
                     randomList2.clear()
 
                     //if list3 is empty
-                } else if (list3.isEmpty()&& list1.isNotEmpty() && list2.isNotEmpty()) {
+                } else if (list3.isEmpty() && list1.isNotEmpty() && list2.isNotEmpty()) {
                     list1RandomElements = list1.shuffled().take(1)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
                     randomList2.add(removeSquareBracket(list1RandomElements.toString()))
@@ -276,20 +288,41 @@ class ShuffleFragment : Fragment() {
                     randomList2.add(removeSquareBracket(list2RandomElements.toString()))
                     randomList.add(removeSquareBracket(randomList2.toString()))
                     randomList2.clear()
-                } else if (list2.isEmpty() && list3.isEmpty()) {
+
+                    //if list2 and 3 are empty
+                }
+                else if (list2.isEmpty() && list3.isEmpty()) {
                     list1RandomElements = list1.shuffled().take(numberOfElements)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
                     randomList.add(removeSquareBracket(list1RandomElements.toString()))
+                } else if (list3.isEmpty() && list1.size == 1 && list1.size < list2.size){
+                    list2RandomElements = list2.shuffled().take(1)
+                    list2.removeIf { x -> list2RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList2.toString()))
+                    randomList2.clear()
+                } else if (list2.isEmpty() && list1.size == 1 && list1.size < list3.size){
+                    list3RandomElements = list3.shuffled().take(1)
+                    list3.removeIf { x -> list3RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list3RandomElements.toString()))
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList2.toString()))
+                    randomList2.clear()
                 }
 
 
             }
-            //when chips are empty
-//            if (randomList3.size == numberOfElements) {
-//                randomList.add(removeSquareBracket(randomList3.toString()))
-//                randomList3.clear()
-//
-//            }
+//            //when chips are empty
+////            if (randomList3.size == numberOfElements) {
+////                randomList.add(removeSquareBracket(randomList3.toString()))
+////                randomList3.clear()
+////
+////            }
 
 //            if (randomList2.size != 0) {
 //                output2.visibility = View.VISIBLE
