@@ -179,21 +179,17 @@ class ShuffleFragment : Fragment() {
         } else {
 
 //            for debug
-//            if (list1.isNotEmpty() && list2.isNotEmpty() && list3.isNotEmpty()) {
-//                list1RandomElements = list1.shuffled().take(1)
-//                list1.removeIf { x -> list1RandomElements.contains(x) }
-//                randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+//            if (list1.size + list2.size <= list3.size) {
 //                list2RandomElements = list2.shuffled().take(1)
 //                list2.removeIf { x -> list2RandomElements.contains(x) }
 //                randomList2.add(removeSquareBracket(list2RandomElements.toString()))
-//                list3RandomElements = list3.shuffled().take(1)
-//                list3.removeIf { x -> list3RandomElements.contains(x) }
-//                randomList2.add(removeSquareBracket(list3RandomElements.toString()))
-//                randomList1 = randomList2.shuffled().take(numberOfElements) as ArrayList<String>
+//                list1RandomElements = list1.shuffled().take(1)
+//                list1.removeIf { x -> list1RandomElements.contains(x) }
+//                randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+//                randomList1 = ArrayList(randomList2.shuffled().take(1))
 //                randomList2.removeIf { x -> randomList1.contains(x) }
-//                randomList.add(removeSquareBracket(randomList1.toString()))
+//                randomList2.add(removeSquareBracket(randomList1.toString()))
 //                randomList1.clear()
-//
 //                //return shuffled value to listX
 //                when {
 //                    nachosChip0.chipValues.containsAll(randomList2) -> {
@@ -206,6 +202,12 @@ class ShuffleFragment : Fragment() {
 //                        list3.addAll(randomList2)
 //                    }
 //                }
+//                list3RandomElements = list3.shuffled().take(1)
+//                list3.removeIf { x -> list3RandomElements.contains(x) }
+//                randomList2.add(removeSquareBracket(list3RandomElements.toString()))
+//                randomList.add(removeSquareBracket(randomList2.toString()))
+//                randomList2.clear()
+//            }
 //
 //
 //                output.visibility = View.VISIBLE
@@ -222,7 +224,7 @@ class ShuffleFragment : Fragment() {
             while (list1.size > 0 || list2.size > 0 || list3.size > 0) {
 
                 //all are equal or none are 0
-                if (list1.isNotEmpty() && list2.isNotEmpty() && list3.isNotEmpty()) {
+                if ((list1.isNotEmpty() && list2.isNotEmpty() && list3.isNotEmpty())) {
                     list1RandomElements = list1.shuffled().take(1)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
                     randomList2.add(removeSquareBracket(list1RandomElements.toString()))
@@ -290,30 +292,80 @@ class ShuffleFragment : Fragment() {
                     randomList2.clear()
 
                     //if list2 and 3 are empty
-                }
-                else if (list2.isEmpty() && list3.isEmpty()) {
+                } else if (list2.isEmpty() && list3.isEmpty()) {
                     list1RandomElements = list1.shuffled().take(numberOfElements)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
                     randomList.add(removeSquareBracket(list1RandomElements.toString()))
-                } else if (list3.isEmpty() && list1.size == 1 && list1.size < list2.size){
-                    list2RandomElements = list2.shuffled().take(1)
-                    list2.removeIf { x -> list2RandomElements.contains(x) }
-                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
-                    list1RandomElements = list1.shuffled().take(1)
-                    list1.removeIf { x -> list1RandomElements.contains(x) }
-                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
-                    randomList.add(removeSquareBracket(randomList2.toString()))
-                    randomList2.clear()
-                } else if (list2.isEmpty() && list1.size == 1 && list1.size < list3.size){
+
+                    //1 and 3 are combined and equal 2 or 1 and 2 are combined and equal 3
+//                } else if (list1.size > 1){
+                } else if ((list1.size + list3.size <= list2.size)) {
                     list3RandomElements = list3.shuffled().take(1)
                     list3.removeIf { x -> list3RandomElements.contains(x) }
                     randomList2.add(removeSquareBracket(list3RandomElements.toString()))
                     list1RandomElements = list1.shuffled().take(1)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
                     randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList1 = ArrayList(randomList2.shuffled().take(1))
+                    randomList2.removeIf { x -> randomList1.contains(x) }
+                    randomList2.add(removeSquareBracket(randomList1.toString()))
+                    randomList1.clear()
+                    //return shuffled value to listX
+                    when {
+                        nachosChip0.chipValues.containsAll(randomList2) -> {
+                            list1.addAll(randomList2)
+                        }
+                        nachosChip1.chipValues.containsAll(randomList2) -> {
+                            list2.addAll(randomList2)
+                        }
+                        nachosChip2.chipValues.containsAll(randomList2) -> {
+                            list3.addAll(randomList2)
+                        }
+                    }
+
+                    list2RandomElements = list2.shuffled().take(1)
+                    list2.removeIf { x -> list2RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList2.toString()))
+                    randomList2.clear()
+
+                } else if (list1.size + list2.size <= list3.size) {
+                    list2RandomElements = list2.shuffled().take(1)
+                    list2.removeIf { x -> list2RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList1 = ArrayList(randomList2.shuffled().take(1))
+                    randomList2.removeIf { x -> randomList1.contains(x) }
+                    randomList2.add(removeSquareBracket(randomList1.toString()))
+                    randomList1.clear()
+                    //return shuffled value to listX
+                    when {
+                        nachosChip0.chipValues.containsAll(randomList2) -> {
+                            list1.addAll(randomList2)
+                        }
+                        nachosChip1.chipValues.containsAll(randomList2) -> {
+                            list2.addAll(randomList2)
+                        }
+                        nachosChip2.chipValues.containsAll(randomList2) -> {
+                            list3.addAll(randomList2)
+                        }
+                    }
+                    list3RandomElements = list3.shuffled().take(1)
+                    list3.removeIf { x -> list3RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list3RandomElements.toString()))
                     randomList.add(removeSquareBracket(randomList2.toString()))
                     randomList2.clear()
                 }
+
+//            else if (list1.size == 1) {
+//                    if (list1.size + list2.size <= list3.size) {
+//                        list2RandomElements = list2.shuffled().take(1)
+//                        list2.removeIf { x -> list2RandomElements.contains(x) }
+//                        randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+//                    }
+//                }
 
 
             }
