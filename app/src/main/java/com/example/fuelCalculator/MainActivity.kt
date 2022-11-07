@@ -64,18 +64,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-//        recyclerView!!.layoutManager = LinearLayoutManager(this)
-//        val itemAdapter = MyAdapter(movies,this)
-//        recyclerView!!.adapter = itemAdapter
 
-        drawer = findViewById(R.id.drawer_layout)
-        var navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
+
 
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        drawer = findViewById(R.id.drawer_layout)
+        var navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+
         this@MainActivity.title = ("Fuel Calculator") // default toolbar title
 
         val toggle = ActionBarDrawerToggle(
@@ -88,15 +86,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                ShuffleFragment()
+                OverviewFragment()
             ).commit()
-            navigationView.setCheckedItem(R.id.nav_shuffle)
+            navigationView.setCheckedItem(R.id.nav_calculator)
             navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
         //delete this after complete
-        this@MainActivity.title = ("Balance Shuffle")
-        toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+//        this@MainActivity.title = ("Balance Shuffle")
+//        toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
+//        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
 
     }
 
