@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import com.hootsuite.nachos.NachoTextView
 import com.hootsuite.nachos.terminator.ChipTerminatorHandler
+
 
 class ShuffleFragment : Fragment() {
     private lateinit var nonRestriction: TextInputEditText
@@ -55,12 +53,19 @@ class ShuffleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_shuffle, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        var suggestions =
+            arrayOf("Petch", "Tar", "Toy", "Que", "Mon", "Boat", "Ton", "Wan", "Bill", "Jame", "Moow", "Kerz", "Pao", "Win")
+        var adapter: ArrayAdapter<String> =
+            ArrayAdapter(requireActivity(),android.R.layout.simple_dropdown_item_1line, suggestions)
+
         nachosChip0 = view.findViewById(R.id.restriction0NachoText)
         nachosChip1 = view.findViewById(R.id.restriction1NachoText)
         nachosChip2 = view.findViewById(R.id.restriction2NachoText)
@@ -74,6 +79,9 @@ class ShuffleFragment : Fragment() {
         nachosChip1.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
         nachosChip2.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN)
         nachosChip2.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
+        nachosChip0.setAdapter(adapter)
+        nachosChip1.setAdapter(adapter)
+        nachosChip2.setAdapter(adapter)
         restriction1TextView = view.findViewById(R.id.restriction1TextView)
         restriction2TextView = view.findViewById(R.id.restriction2TextView)
 //        restriction2TextView.visibility = View.GONE
@@ -115,10 +123,10 @@ class ShuffleFragment : Fragment() {
         return x.replace(",", "")
     }
 
-    override fun onStop() {
-        super.onStop()
-        activity!!.finish()
-    }
+//    override fun onStop() {
+//        super.onStop()
+//        activity!!.finish()
+//    }
 
     private fun shufflePlayer() {
         //list of chip value

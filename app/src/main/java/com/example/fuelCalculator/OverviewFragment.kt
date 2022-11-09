@@ -77,6 +77,7 @@ class OverviewFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 //        vehicleQuantityInput = view.findViewById(R.id.vehicle_quantity_text_input)
         consumptionInput = view.findViewById(R.id.vehicle_consumption_text_input)
         distanceInput = view.findViewById(R.id.vehicle_distance_text_input)
