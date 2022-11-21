@@ -1,5 +1,6 @@
 package com.example.fuelCalculator
 
+import android.app.Activity
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
@@ -69,10 +70,14 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val v:View = inflater.inflate(R.layout.fragment_overview, container, false)
+
+        v.setOnTouchListener(OnSwipeListener.OnSwipeTouchListener(Activity()))
 
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_overview, container, false)
+        return v
     }
+
 
 
 
