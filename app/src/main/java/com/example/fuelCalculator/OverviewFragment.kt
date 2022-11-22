@@ -1,12 +1,13 @@
 package com.example.fuelCalculator
 
 import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
@@ -18,6 +19,11 @@ import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
+import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class OverviewFragment : Fragment() {
@@ -33,6 +39,10 @@ class OverviewFragment : Fragment() {
     private lateinit var output: TextView
     private lateinit var outputAns: TextView
     private lateinit var line2: View
+
+    lateinit var preferences: SharedPreferences
+
+    private lateinit var drawer: DrawerLayout
 
 //    var distanceInputEditTextString = distanceInputEditText.text.toString()
 //    var distanceInputEditTextNumber = distanceInputEditTextString.toDouble()
@@ -70,16 +80,31 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v:View = inflater.inflate(R.layout.fragment_overview, container, false)
+        drawer = activity!!.findViewById(R.id.drawer_layout);
+        val v: View = inflater.inflate(R.layout.fragment_overview, container, false)
 
-        v.setOnTouchListener(OnSwipeListener.OnSwipeTouchListener(Activity()))
+        //swiping functions
+        v.setOnTouchListener(object : OnSwipeTouchListener(activity) {
+//            override fun onSwipeTop() {
+//                Toast.makeText(activity, "Top Swipe", Toast.LENGTH_SHORT).show()
+//            }
 
+            override fun onSwipeRight() {
+                drawer.openDrawer(GravityCompat.START)
+            }
+
+//            override fun onSwipeLeft() {
+//                Toast.makeText(activity, "Left Swipe", Toast.LENGTH_SHORT).show()
+//            }
+
+//            override fun onSwipeBottom() {
+//                Toast.makeText(activity, "Bottom Swipe", Toast.LENGTH_SHORT).show()
+//            }
+
+        })
         setHasOptionsMenu(true)
         return v
     }
-
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -93,6 +118,16 @@ class OverviewFragment : Fragment() {
         gasPriceEditText = view.findViewById(R.id.gas_price)
         consumptionEditText = view.findViewById(R.id.vehicle_consumption)
         peopleEditText = view.findViewById(R.id.people)
+
+        preferences = activity!!.getSharedPreferences("MY_PREFERENCE",Context.MODE_PRIVATE)
+
+        distanceInputEditText.setText(preferences.getString("vehicle_distance",""))
+        gasPriceEditText.setText(preferences.getString("gas_price",""))
+        consumptionEditText.setText(preferences.getString("vehicle_consumption",""))
+        peopleEditText.setText(preferences.getString("people",""))
+
+
+
 
         line2 = view.findViewById(R.id.view2)
         output = view.findViewById(R.id.output)
@@ -206,6 +241,34 @@ class OverviewFragment : Fragment() {
 //            Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.i("ae","onCreate")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("ae","onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val editor:SharedPreferences.Editor = preferences.edit()
+        editor.putString("vehicle_distance",distanceInputEditText.text.toString())
+        editor.putString("gas_price",gasPriceEditText.text.toString())
+        editor.putString("vehicle_consumption",consumptionEditText.text.toString())
+        editor.putString("people",peopleEditText.text.toString())
+        editor.commit()
+        Log.i("ae","OnStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val preferences: SharedPreferences = activity!!.getSharedPreferences("MY_PREFERENCE",Context.MODE_PRIVATE)
+        preferences.edit().clear().commit()
+        Log.i("ae","onDestroy")
     }
 
 
@@ -606,5 +669,6 @@ class OverviewFragment : Fragment() {
             )
         }
     }
+
 
 }

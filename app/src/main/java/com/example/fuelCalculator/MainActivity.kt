@@ -27,15 +27,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
     private lateinit var context: Context
-    private lateinit var gestureDetector: GestureDetector
-    private var x2:Float = 0.0f
-    private var x1:Float = 0.0f
-    private var y2:Float = 0.0f
-    private var y1:Float = 0.0f
 
-    companion object{
-        const val MIN_DISTANCE = 150
-    }
+//    companion object{
+//        const val MIN_DISTANCE = 150
+//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.nav_calculator) {
@@ -65,6 +60,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
 //        gestureDetector = GestureDetector(this,this)
 
@@ -177,27 +174,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 //    override fun onDown(p0: MotionEvent?): Boolean {
-//        TODO("Not yet implemented")
+//        //TODO("Not yet implemented")
+//        return false
 //    }
 //
 //    override fun onShowPress(p0: MotionEvent?) {
-//        TODO("Not yet implemented")
+//        //TODO("Not yet implemented")
 //    }
 //
 //    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
-//        TODO("Not yet implemented")
+//        //TODO("Not yet implemented")
+//        return false
 //    }
 //
 //    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-//        TODO("Not yet implemented")
+//        //TODO("Not yet implemented")
+//        return false
 //    }
 //
 //    override fun onLongPress(p0: MotionEvent?) {
-//        TODO("Not yet implemented")
+//        //TODO("Not yet implemented")
 //    }
 //
 //    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-//        TODO("Not yet implemented")
+//        //TODO("Not yet implemented")
+//        return false
 //    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
 }

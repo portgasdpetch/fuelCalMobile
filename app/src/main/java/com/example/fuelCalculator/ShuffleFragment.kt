@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,21 +43,38 @@ class ShuffleFragment : Fragment() {
     private var randomList1: ArrayList<String> = arrayListOf()
     private var randomList2: ArrayList<String> = arrayListOf()
     private var randomList3: ArrayList<String> = arrayListOf()
-//    private var movies = listOf("Ae1",
-//        "Ae2",
-//        "Ae3",
-//        "Ae4",
-//        "Ae8")
+
+    private lateinit var drawer: DrawerLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        drawer = activity!!.findViewById(R.id.drawer_layout);
+        val v: View = inflater.inflate(R.layout.fragment_shuffle, container, false)
 
+        //swiping functions
+        v.setOnTouchListener(object : OnSwipeTouchListener(activity) {
+//            override fun onSwipeTop() {
+//                Toast.makeText(activity, "Top Swipe", Toast.LENGTH_SHORT).show()
+//            }
+
+            override fun onSwipeRight() {
+                drawer.openDrawer(GravityCompat.START)
+            }
+
+//            override fun onSwipeLeft() {
+//                Toast.makeText(activity, "Left Swipe", Toast.LENGTH_SHORT).show()
+//            }
+
+//            override fun onSwipeBottom() {
+//                Toast.makeText(activity, "Bottom Swipe", Toast.LENGTH_SHORT).show()
+//            }
+        })
 
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_shuffle, container, false)
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -405,6 +424,7 @@ class ShuffleFragment : Fragment() {
         val itemAdapter = MyAdapter(randomList, requireActivity())
         recyclerView!!.adapter = itemAdapter
     }
+
 }
 
 

@@ -8,69 +8,67 @@ import android.view.View
 import kotlin.math.abs
 
 
-class OnSwipeListener {
-    // Detects left and right swipes across a view
-    class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
-        // https://developer.android.com/reference/android/view/GestureDetector
-        private val gestureDetector: GestureDetector
+// Detects left and right swipes across a view
+open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
+    // https://developer.android.com/reference/android/view/GestureDetector
+    private val gestureDetector: GestureDetector
 
-        companion object {
-            private const val SWIPE_THRESHOLD = 100
-            private const val SWIPE_VELOCITY_THRESHOLD = 100
+    companion object {
+        private const val SWIPE_THRESHOLD = 100
+        private const val SWIPE_VELOCITY_THRESHOLD = 100
+    }
+
+    init {
+        gestureDetector = GestureDetector(context, GestureListener())
+    }
+
+    // from View.onTouchListener class
+    override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
+        return gestureDetector.onTouchEvent(motionEvent)
+    }
+
+    private inner class GestureListener : SimpleOnGestureListener() {
+        override fun onDown(e: MotionEvent): Boolean {
+            return true
         }
 
-        init {
-            gestureDetector = GestureDetector(context, GestureListener())
-        }
-
-        // from View.onTouchListener class
-        override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
-            return gestureDetector.onTouchEvent(motionEvent)
-        }
-
-        private inner class GestureListener : SimpleOnGestureListener() {
-            override fun onDown(e: MotionEvent): Boolean {
-                return true
-            }
-
-            override fun onFling(
-                e1: MotionEvent,
-                e2: MotionEvent,
-                velocityX: Float,
-                velocityY: Float
-            ): Boolean {
-                var result = false
-                try {
-                    val diffY = e2.y - e1.y
-                    val diffX = e2.x - e2.x
-                    if (abs(diffX) > abs(diffY)) {
-                        if (abs(diffX) > Companion.SWIPE_THRESHOLD && abs(velocityX) > Companion.SWIPE_VELOCITY_THRESHOLD) {
-                            if (diffX > 0) {
-                                onSwipeRight()
-                            } else {
-                                onSwipeLeft()
-                            }
-                            result = true
-                        }
-                    } else if (abs(diffY) > Companion.SWIPE_THRESHOLD && abs(velocityY) > Companion.SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffY > 0) {
-                            onSwipeBottom()
+        override fun onFling(
+            e1: MotionEvent,
+            e2: MotionEvent,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
+            var result = false
+            try {
+                val diffY = e2.y - e1.y
+                val diffX = e2.x - e1.x
+                if (abs(diffX) > abs(diffY)) {
+                    if (abs(diffX) > Companion.SWIPE_THRESHOLD && abs(velocityX) > Companion.SWIPE_VELOCITY_THRESHOLD) {
+                        if (diffX > 0) {
+                            onSwipeRight()
                         } else {
-                            onSwipeTop()
+                            onSwipeLeft()
                         }
                         result = true
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
+                } else if (abs(diffY) > Companion.SWIPE_THRESHOLD && abs(velocityY) > Companion.SWIPE_VELOCITY_THRESHOLD) {
+                    if (diffY > 0) {
+                        onSwipeBottom()
+                    } else {
+                        onSwipeTop()
+                    }
+                    result = true
                 }
-                return result
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-
+            return result
         }
 
-        fun onSwipeRight() {}
-        fun onSwipeLeft() {}
-        fun onSwipeTop() {}
-        fun onSwipeBottom() {}
     }
+
+    open fun onSwipeRight() {}
+    open fun onSwipeLeft() {}
+    open fun onSwipeTop() {}
+    open fun onSwipeBottom() {}
 }
