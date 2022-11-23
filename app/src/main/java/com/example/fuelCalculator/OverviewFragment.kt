@@ -40,7 +40,7 @@ class OverviewFragment : Fragment() {
     private lateinit var outputAns: TextView
     private lateinit var line2: View
 
-    lateinit var preferences: SharedPreferences
+    private lateinit var preferences: SharedPreferences
 
     private lateinit var drawer: DrawerLayout
 
@@ -80,6 +80,7 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.i("ae","onCreateView")
         drawer = activity!!.findViewById(R.id.drawer_layout);
         val v: View = inflater.inflate(R.layout.fragment_overview, container, false)
 
@@ -108,6 +109,7 @@ class OverviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i("ae","onViewCreated")
 //        vehicleQuantityInput = view.findViewById(R.id.vehicle_quantity_text_input)
         consumptionInput = view.findViewById(R.id.vehicle_consumption_text_input)
         distanceInput = view.findViewById(R.id.vehicle_distance_text_input)
@@ -119,12 +121,13 @@ class OverviewFragment : Fragment() {
         consumptionEditText = view.findViewById(R.id.vehicle_consumption)
         peopleEditText = view.findViewById(R.id.people)
 
-        preferences = activity!!.getSharedPreferences("MY_PREFERENCE",Context.MODE_PRIVATE)
+        preferences = activity!!.getSharedPreferences("CALCULATOR_PREFERENCE",Context.MODE_PRIVATE)
 
         distanceInputEditText.setText(preferences.getString("vehicle_distance",""))
         gasPriceEditText.setText(preferences.getString("gas_price",""))
         consumptionEditText.setText(preferences.getString("vehicle_consumption",""))
         peopleEditText.setText(preferences.getString("people",""))
+
 
 
 
@@ -164,6 +167,7 @@ class OverviewFragment : Fragment() {
 //        val toggleDifferentConsumption: ToggleButton = view.findViewById(R.id.same_consumption_toggle)
 //        val toggleSplit: ToggleButton = view.findViewById(R.id.split_vehicle_toggle)
         val confirmButton: Button = view.findViewById(R.id.btn_confirm)
+        val resetButton: Button = view.findViewById(R.id.btn_reset)
 //        val button1 = view.findViewById<Button>(R.id.outlinedButton1)
 //        val button2 = view.findViewById<Button>(R.id.outlinedButton2)
 //        val button3 = view.findViewById<Button>(R.id.outlinedButton3)
@@ -240,12 +244,31 @@ class OverviewFragment : Fragment() {
             calAndPrintAll()
 //            Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show()
         }
+        resetButton.setOnClickListener {
+            clearFormAndPreferences()
+        }
 
+    }
+
+    private fun clearFormAndPreferences(){
+        distanceInputEditText.setText("")
+        gasPriceEditText.setText("")
+        consumptionEditText.setText("")
+        peopleEditText.setText("")
+        output.visibility = View.GONE
+        line2.visibility = View.GONE
+        preferences.edit().clear().commit()
+        Log.i("ae","clearFormAndPreferences")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i("ae","onCreate")
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        Log.i("ae","onAttach")
     }
 
     override fun onResume() {
@@ -266,8 +289,8 @@ class OverviewFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        val preferences: SharedPreferences = activity!!.getSharedPreferences("MY_PREFERENCE",Context.MODE_PRIVATE)
-        preferences.edit().clear().commit()
+//        val preferences: SharedPreferences = activity!!.getSharedPreferences("MY_PREFERENCE",Context.MODE_PRIVATE)
+//        preferences.edit().clear().commit()
         Log.i("ae","onDestroy")
     }
 
@@ -310,17 +333,21 @@ class OverviewFragment : Fragment() {
         vehicleQuantity = 1
         formatter.roundingMode = RoundingMode.HALF_UP
         val distanceInputEditTextString = distanceInputEditText.text.toString()
-        val distanceInputEditTextNumber = distanceInputEditTextString.toDouble()
+
         val gasPriceEditTextString = gasPriceEditText.text.toString()
-        val gasPriceEditTextNumber = gasPriceEditTextString.toDouble()
+
         val consumptionEditTextString = consumptionEditText.text.toString()
-        val consumptionEditTextNumber = consumptionEditTextString.toDouble()
+
         val peopleEditTextString = peopleEditText.text.toString()
-        val peopleEditTextNumber = peopleEditTextString.toInt()
+
 
         if (distanceInputEditTextString.isBlank() || gasPriceEditTextString.isBlank() || consumptionEditTextString.isBlank() || peopleEditTextString.isBlank()) {
             Toast.makeText(context, "Please fill the empty field(s)", Toast.LENGTH_SHORT).show()
         } else {
+            val distanceInputEditTextNumber = distanceInputEditTextString.toDouble()
+            val gasPriceEditTextNumber = gasPriceEditTextString.toDouble()
+            val consumptionEditTextNumber = consumptionEditTextString.toDouble()
+            val peopleEditTextNumber = peopleEditTextString.toInt()
             line2.visibility = View.VISIBLE
             output.visibility = View.VISIBLE
 //            outputAns.visibility = View.VISIBLE

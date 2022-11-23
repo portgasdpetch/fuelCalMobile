@@ -1,6 +1,9 @@
 package com.example.fuelCalculator
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +46,9 @@ class ShuffleFragment : Fragment() {
     private var randomList1: ArrayList<String> = arrayListOf()
     private var randomList2: ArrayList<String> = arrayListOf()
     private var randomList3: ArrayList<String> = arrayListOf()
+    private lateinit var destroyedString:String
+
+    private lateinit var preferences: SharedPreferences
 
     private lateinit var drawer: DrawerLayout
 
@@ -81,7 +87,7 @@ class ShuffleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var suggestions =
-            arrayOf("Petch", "Tar", "Toy", "Que", "Mon", "Boat", "Ton", "Wan", "Bill", "Jame", "Moow", "Kerz", "Pao", "Win")
+            arrayOf("Petch", "Tar", "Toy", "Que", "Mon", "Boat", "Ton", "Wan", "Bill", "Jame", "Moow", "Kerz", "Pao", "Win","Pete")
         var adapter: ArrayAdapter<String> =
             ArrayAdapter(requireActivity(),android.R.layout.simple_dropdown_item_1line, suggestions)
 
@@ -90,14 +96,20 @@ class ShuffleFragment : Fragment() {
         nachosChip2 = view.findViewById(R.id.restriction2NachoText)
         checkBox = view.findViewById(R.id.match_restriction_checkbox)
         val shuffleButton: Button = view.findViewById(R.id.shuffle_button)
+        val resetButton: Button = view.findViewById(R.id.reset_button)
         line = view.findViewById(R.id.view_underline)
         nachosChip0.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN)
         nachosChip0.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
+        nachosChip0.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
 //        nachosChip0.enableEditChipOnTouch(false,false)
         nachosChip1.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN)
         nachosChip1.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
+        nachosChip1.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
+
         nachosChip2.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN)
         nachosChip2.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
+        nachosChip2.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
+
         nachosChip0.setAdapter(adapter)
         nachosChip1.setAdapter(adapter)
         nachosChip2.setAdapter(adapter)
@@ -105,13 +117,50 @@ class ShuffleFragment : Fragment() {
         restriction2TextView = view.findViewById(R.id.restriction2TextView)
 //        restriction2TextView.visibility = View.GONE
 //        nachosChip2.visibility = View.GONE
-
-        line.visibility = View.VISIBLE
         output = view.findViewById(R.id.output)
         output2 = view.findViewById(R.id.output2)
         output3 = view.findViewById(R.id.output3)
         output4 = view.findViewById(R.id.output4)
         output5 = view.findViewById(R.id.output5)
+
+        preferences = activity!!.getSharedPreferences("SHUFFLING_PREFERENCE", Context.MODE_PRIVATE)
+
+        nachosChip0.setText(preferences.getString("Chunin",""))
+        nachosChip1.setText(preferences.getString("Jounin",""))
+        nachosChip2.setText(preferences.getString("Genin",""))
+        checkBox.isChecked = preferences.getBoolean("mission",true)
+        val fetch:Set<String> = preferences.getStringSet("result", emptySet())
+        output2.text = fetch.toString().replace("[","").replace("]","")
+        destroyedString = preferences.getString("lineResult","")
+
+        if (output2.text.toString()!=("")){
+            output2.visibility = View.VISIBLE
+            line.visibility = View.VISIBLE
+        }
+        else {
+//            output2.visibility = View.GONE
+            output2.text = destroyedString
+            output2.visibility = View.VISIBLE
+            line.visibility = View.VISIBLE
+        }
+
+        //make all to be chipped if a token is exist
+        val nachosChip0Token = nachosChip0.tokenValues.toString()
+        val nachosChip1Token = nachosChip1.tokenValues.toString()
+        val nachosChip2Token = nachosChip2.tokenValues.toString()
+        if (nachosChip0Token!=""){
+            nachosChip0.append("\n")
+        }
+        if (nachosChip1Token!=""){
+            nachosChip1.append("\n")
+        }
+        if (nachosChip2Token!=""){
+            nachosChip2.append("\n")
+        }
+
+
+
+
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView!!.layoutManager = LinearLayoutManager(context)
 
@@ -128,9 +177,16 @@ class ShuffleFragment : Fragment() {
             randomList2.clear()
             randomList3.clear()
             output.visibility = View.GONE
+            output2.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
             shufflePlayer()
 
             Toast.makeText(context, "Shuffled!", Toast.LENGTH_SHORT).show()
+
+        }
+        resetButton.setOnClickListener {
+            clearFormAndPreferences()
+            Toast.makeText(context,"Clear!",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -142,16 +198,40 @@ class ShuffleFragment : Fragment() {
         return x.replace(",", "")
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//        activity!!.finish()
-//    }
+    private fun clearFormAndPreferences(){
+//        nachosChip0.setText("")
+//        nachosChip1.setText("")
+//        nachosChip2.setText("")
+//        checkBox.isChecked = true
+        output2.text = ""
+        recyclerView?.visibility = View.GONE
+        preferences.edit().clear().commit()
+        Log.i("ae","clearFormAndPreferences")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val editor:SharedPreferences.Editor = preferences.edit()
+        editor.putString("Chunin",nachosChip0.chipValues.toString().replace("[","").replace(",","").replace("]",""))
+        editor.putString("Jounin",nachosChip1.chipValues.toString().replace("[","").replace(",","").replace("]",""))
+        editor.putString("Genin",nachosChip2.chipValues.toString().replace("[","").replace(",","").replace("]",""))
+        editor.putBoolean("mission",checkBox.isChecked)
+        editor.putStringSet("result",randomList.toMutableSet())
+        editor.putString("lineResult",output2.text.toString())
+        Log.i("jaishock",output2.toString())
+        editor.commit()
+    }
+
 
     private fun shufflePlayer() {
         //list of chip value
         val list1 = nachosChip0.chipValues
         val list2 = nachosChip1.chipValues
         val list3 = nachosChip2.chipValues
+
+        Log.i("jainig",nachosChip0.tokenValues.toString())
+
+        line.visibility = View.VISIBLE
 
         //2 restrictions
         //matches restrictions first
@@ -356,7 +436,93 @@ class ShuffleFragment : Fragment() {
                     randomList2.clear()
                     randomList3.clear()
                 }
-                else {
+                else if (list2.size<numberOfElements && list3.size >= numberOfElements && list1.size >= numberOfElements) {
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    list3RandomElements = list3.shuffled().take(1)
+                    list3.removeIf { x -> list3RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list3RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList2.toString()))
+                    randomList2.clear()
+                }
+                //prevent comma bug
+                else if ((((list2.size-list3.size)<numberOfElements) && (list2.size-list3.size)>0) ){
+                    list3RandomElements = list3.shuffled().take(1)
+                    list3.removeIf { x -> list3RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list3RandomElements.toString()))
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList1 = ArrayList(randomList2.shuffled().take(1))
+                    randomList2.removeIf { x -> randomList1.contains(x) }
+                    randomList3.add(removeSquareBracket(randomList1.toString()))
+                    randomList1.clear()
+                    //return shuffled value to listX
+                    when {
+                        nachosChip0.chipValues.containsAll(randomList2) -> {
+                            list1.addAll(randomList2)
+                        }
+                        nachosChip1.chipValues.containsAll(randomList2) -> {
+                            list2.addAll(randomList2)
+                        }
+                        nachosChip2.chipValues.containsAll(randomList2) -> {
+                            list3.addAll(randomList2)
+                        }
+                    }
+
+                    list2RandomElements = list2.shuffled().take(1)
+                    list2.removeIf { x -> list2RandomElements.contains(x) }
+                    randomList3.add(removeSquareBracket(list2RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList3.toString()))
+                    randomList2.clear()
+                    randomList3.clear()
+                }
+                //prevent comma bug
+                else if ((((list3.size-list2.size)<numberOfElements) && (list3.size-list2.size)>0) ){
+                    list2RandomElements = list2.shuffled().take(1)
+                    list2.removeIf { x -> list2RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                    list1RandomElements = list1.shuffled().take(1)
+                    list1.removeIf { x -> list1RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list1RandomElements.toString()))
+                    randomList1 = ArrayList(randomList2.shuffled().take(1))
+                    randomList2.removeIf { x -> randomList1.contains(x) }
+                    randomList3.add(removeSquareBracket(randomList1.toString()))
+                    randomList1.clear()
+                    //return shuffled value to listX
+                    when {
+                        nachosChip0.chipValues.containsAll(randomList2) -> {
+                            list1.addAll(randomList2)
+                        }
+                        nachosChip1.chipValues.containsAll(randomList2) -> {
+                            list2.addAll(randomList2)
+                        }
+                        nachosChip2.chipValues.containsAll(randomList2) -> {
+                            list3.addAll(randomList2)
+                        }
+                    }
+                    list3RandomElements = list3.shuffled().take(1)
+                    list3.removeIf { x -> list3RandomElements.contains(x) }
+                    randomList3.add(removeSquareBracket(list3RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList3.toString()))
+                    randomList2.clear()
+                    randomList3.clear()
+
+
+                }
+                //prevent comma bug
+                else if ((list1.size==list2.size) && list1.size==list3.size){
+                    list2RandomElements = list2.shuffled().take(1)
+                    list2.removeIf { x -> list2RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list2RandomElements.toString()))
+                    list3RandomElements = list3.shuffled().take(1)
+                    list3.removeIf { x -> list3RandomElements.contains(x) }
+                    randomList2.add(removeSquareBracket(list3RandomElements.toString()))
+                    randomList.add(removeSquareBracket(randomList2.shuffled().toString()))
+                    randomList2.clear()
+                }
+                else{
                     list1RandomElements = list1.shuffled().take(1)
                     list1.removeIf { x -> list1RandomElements.contains(x) }
                     randomList2.add(removeSquareBracket(list1RandomElements.toString()))
@@ -391,32 +557,10 @@ class ShuffleFragment : Fragment() {
 
                 }
 
-//            else if (list1.size == 1) {
-//                    if (list1.size + list2.size <= list3.size) {
-//                        list2RandomElements = list2.shuffled().take(1)
-//                        list2.removeIf { x -> list2RandomElements.contains(x) }
-//                        randomList2.add(removeSquareBracket(list2RandomElements.toString()))
-//                    }
-//                }
 
 
             }
-//            //when chips are empty
-////            if (randomList3.size == numberOfElements) {
-////                randomList.add(removeSquareBracket(randomList3.toString()))
-////                randomList3.clear()
-////
-////            }
 
-//            if (randomList2.size != 0) {
-//                output2.visibility = View.VISIBLE
-//                output2.text = "randomList2: " + removeSquareBracket(randomList2.toString())
-//                output3.visibility = View.VISIBLE
-//                output3.text = "randomList2.size : " + randomList2.size
-//            }
-
-//            output.visibility = View.VISIBLE
-//            output.text = "randomList2: " + randomList2
         }
 
 

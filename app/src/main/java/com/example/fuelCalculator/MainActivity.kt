@@ -2,6 +2,7 @@ package com.example.fuelCalculator
 
 import android.content.Context
 import android.graphics.Rect
+import android.net.wifi.hotspot2.pps.HomeSp
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MenuItem
@@ -17,50 +18,74 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Math.abs
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawer: DrawerLayout
     private var backPressedTime: Long = 0.toLong()
     private lateinit var context: Context
 
-//    companion object{
-//        const val MIN_DISTANCE = 150
-//    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.nav_calculator) {
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                OverviewFragment()
-            ).commit()
-            this@MainActivity.title = ("Fuel Calculator")
-            toolbar.setBackgroundColor(getColor(R.color.colorPrimary))
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        val fragManager = supportFragmentManager
+        val fragment = fragManager.findFragmentByTag("TAG")
+
+        //if else style
+//        if (item.itemId == R.id.nav_calculator) {
+//            supportFragmentManager.beginTransaction().replace(
+//                R.id.fragment_container,
+//                OverviewFragment()
+//            ).commit()
+//            this@MainActivity.title = ("Fuel Calculator")
+//            toolbar.setBackgroundColor(getColor(R.color.colorPrimary))
+//            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+//        }
+//        if (item.itemId == R.id.nav_shuffle) {
+//            supportFragmentManager.beginTransaction().replace(
+//                R.id.fragment_container,
+//                ShuffleFragment()
+//            ).commit()
+//            this@MainActivity.title = ("Balance Shuffle")
+//            toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
+//            window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+//        }
+
+        //switch case style
+//        if (fragment == null) {
+        when (item.itemId) {
+            R.id.nav_calculator -> {
+                changeFragment(OverviewFragment())
+                this@MainActivity.title = ("Fuel Calculator")
+                toolbar.setBackgroundColor(getColor(R.color.colorPrimary))
+                window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+            }
+            R.id.nav_shuffle -> {
+                changeFragment(ShuffleFragment())
+                this@MainActivity.title = ("Balance Shuffle")
+                toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
+                window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+            }
         }
-        if (item.itemId == R.id.nav_shuffle) {
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container,
-                ShuffleFragment()
-            ).commit()
-            this@MainActivity.title = ("Balance Shuffle")
-            toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
-        }
+//        }
 
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun changeFragment(frag: Fragment) {
+        val fragment = supportFragmentManager.beginTransaction()
+        fragment.replace(R.id.fragment_container, frag, "TAG").commit()
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
 
 //        gestureDetector = GestureDetector(this,this)
@@ -96,51 +121,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    //swiping gesture
-//    override fun onTouchEvent(event: MotionEvent?): Boolean {
-//
-//        gestureDetector.onTouchEvent(event)
-//
-//        when (event?.action){
-//            //when swipe is starting
-//            0-> {
-//                x1 = event.x
-//                y1 = event.y
-//            }
-//
-//            //when swipe is ending
-//            1-> {
-//                x2 = event.x
-//                y2 = event.y
-//
-//                val valueX:Float = x2-x1
-//                val valueY:Float = y2-y1
-//
-//                if (abs(valueX) > MIN_DISTANCE) {
-//                    //left to right swipe
-//                    if (x2 > x1){
-//                        Toast.makeText(this,"Right Swipe",Toast.LENGTH_SHORT).show()
-//                    //right to left swipe
-//                    } else {
-//                        Toast.makeText(this,"Left Swipe",Toast.LENGTH_SHORT).show()
-//                    }
-//                } else if (abs(valueY) > MIN_DISTANCE) {
-//                    //detect top to bottom swipe
-//                    if (y2>y1){
-//                        Toast.makeText(this, "Bottom Swipe",Toast.LENGTH_SHORT).show()
-//                    //bottom to top swipe
-//                    } else {
-//                        Toast.makeText(this,"Top Swipe",Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        }
-//
-//        return super.onTouchEvent(event)
-//    }
-
-
-    //clear focus when press outside textView
+   //clear focus when press outside textView
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
             val v = currentFocus
@@ -172,37 +153,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             backPressedTime = System.currentTimeMillis()
         }
     }
-
-//    override fun onDown(p0: MotionEvent?): Boolean {
-//        //TODO("Not yet implemented")
-//        return false
-//    }
-//
-//    override fun onShowPress(p0: MotionEvent?) {
-//        //TODO("Not yet implemented")
-//    }
-//
-//    override fun onSingleTapUp(p0: MotionEvent?): Boolean {
-//        //TODO("Not yet implemented")
-//        return false
-//    }
-//
-//    override fun onScroll(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-//        //TODO("Not yet implemented")
-//        return false
-//    }
-//
-//    override fun onLongPress(p0: MotionEvent?) {
-//        //TODO("Not yet implemented")
-//    }
-//
-//    override fun onFling(p0: MotionEvent?, p1: MotionEvent?, p2: Float, p3: Float): Boolean {
-//        //TODO("Not yet implemented")
-//        return false
-//    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 }
