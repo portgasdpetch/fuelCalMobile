@@ -129,9 +129,9 @@ class ShuffleFragment : Fragment() {
         nachosChip1.setText(preferences.getString("Jounin",""))
         nachosChip2.setText(preferences.getString("Genin",""))
         checkBox.isChecked = preferences.getBoolean("mission",true)
-        val fetch:Set<String> = preferences.getStringSet("result", emptySet())
+        val fetch:Set<String> = preferences.getStringSet("result", emptySet()) as Set<String>
         output2.text = fetch.toString().replace("[","").replace("]","")
-        destroyedString = preferences.getString("lineResult","")
+        destroyedString = preferences.getString("lineResult","").toString()
 
         if (output2.text.toString()!=("")){
             output2.visibility = View.VISIBLE
