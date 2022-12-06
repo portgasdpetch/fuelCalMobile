@@ -24,6 +24,10 @@ android {
     packagingOptions {
         exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
 
@@ -35,8 +39,8 @@ dependencies {
     implementation "com.hootsuite.android:nachos:1.1.1"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation("androidx.recyclerview:recyclerview:1.2.1")
-//    implementation platform('com.google.firebase:firebase-bom:31.1.0')
-//    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation 'com.google.firebase:firebase-database-ktx'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
