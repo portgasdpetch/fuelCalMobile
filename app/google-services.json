@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "187415397235",
+    "firebase_url": "https://meeseeks-34d9f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "meeseeks-34d9f",
+    "storage_bucket": "meeseeks-34d9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187415397235:android:5320df3aa35b457613bb06",
+        "android_client_info": {
+          "package_name": "com.example.fuelcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187415397235-5lqk0p5hb9skbdb9qsim0viors46htno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB31bMrQgX8TNzwwjkLFQQNuIAUWxm5Pc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187415397235-5lqk0p5hb9skbdb9qsim0viors46htno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

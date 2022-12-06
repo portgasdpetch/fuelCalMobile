@@ -14,6 +14,9 @@
             android:id="@+id/nav_calculator"
             android:title="Fuel Calculator" />
         <item
+            android:id="@+id/nav_fuelPrice"
+            android:title="Fuel Price"/>
+        <item
             android:id="@+id/nav_shuffle"
             android:title="Shuffle Player" />
     </group>

@@ -70,6 +70,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
                 window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
             }
+            R.id.nav_fuelPrice -> {
+                changeFragment(OilPriceFragment())
+                this@MainActivity.title = ("Fuel Price")
+                toolbar.setBackgroundColor(getColor(R.color.colorPrimary))
+                window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+            }
         }
 //        }
 
@@ -109,9 +115,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                OverviewFragment()
+                OilPriceFragment()
             ).commit()
-            navigationView.setCheckedItem(R.id.nav_calculator)
+            navigationView.setCheckedItem(R.id.nav_fuelPrice)
             navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
         //delete this after complete

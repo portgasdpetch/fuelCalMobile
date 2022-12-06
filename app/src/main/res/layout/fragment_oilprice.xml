@@ -4,27 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="0dp"
-    android:focusableInTouchMode="true"
-    android:descendantFocusability="beforeDescendants"
     android:clickable="true"
+    android:descendantFocusability="beforeDescendants"
     android:focusable="true"
-    android:orientation="vertical">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:paddingVertical="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/oilPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fuel Price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingHorizontal="170dp"/>
+        android:layout_height="match_parent"
+        android:paddingHorizontal="8dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/oilPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fuel Price"
+            android:textSize="50px"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/oilPriceText"
+            android:text="lorem ipsum"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/oilPrice"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/oilPrice"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fireBaseButton"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/oilPriceText"
+            android:layout_height="57dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="press me"
+            app:layout_constraintTop_toBottomOf="@+id/oilPriceText" />
     </RelativeLayout>
 
 
