@@ -19,6 +19,9 @@
         <item
             android:id="@+id/nav_shuffle"
             android:title="Shuffle Player" />
+        <item
+            android:id="@+id/nav_qr"
+            android:title="Qr Code Generator"/>
     </group>
 
 

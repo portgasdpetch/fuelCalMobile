@@ -76,6 +76,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 toolbar.setBackgroundColor(getColor(R.color.colorPrimary))
                 window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
             }
+            R.id.nav_qr -> {
+                changeFragment(QrCodeGeneratorFragment())
+                this@MainActivity.title = ("QR Code Generator")
+                toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
+                window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+            }
         }
 //        }
 
@@ -115,9 +121,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(
                 R.id.fragment_container,
-                OilPriceFragment()
+                OverviewFragment()
             ).commit()
-            navigationView.setCheckedItem(R.id.nav_fuelPrice)
+            navigationView.setCheckedItem(R.id.nav_calculator)
             navigationView.menu.getItem(1).setActionView(R.layout.menu_image)
         }
         //delete this after complete
