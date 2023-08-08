@@ -1,13 +1,16 @@
 package com.example.fuelCalculator
 
 import android.Manifest
+import android.content.ContentValues
 import android.content.Context.WINDOW_SERVICE
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Point
+import android.media.MediaScannerConnection
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import android.view.*
@@ -81,11 +84,12 @@ class QrCodeGeneratorFragment : Fragment() {
         // on below line we are
         // initializing our all variables.
         qrIV = view.findViewById(R.id.idIVQrcode)
+
         msgEdt = view.findViewById(R.id.idEdt)
         generateQRBtn = view.findViewById(R.id.idBtnGenerateQR)
         saveQRBtn = view.findViewById(R.id.idBtnSaveQR)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= 29) {
             savePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).path + "/QRCode/";
         }
 
@@ -146,19 +150,33 @@ class QrCodeGeneratorFragment : Fragment() {
         saveQRBtn.setOnClickListener{
             if (ContextCompat.checkSelfPermission(requireContext(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                System.currentTimeMillis()
+                ) == PackageManager.PERMISSION_GRANTED) {
                 try {
-                    val save = QRGSaver().save(
-                        savePath,
-                        System.currentTimeMillis().toString().trim { it <= ' ' },
-                        bitmap,
-                        QRGContents.ImageType.IMAGE_JPEG
-                    )
+                    val save = QRGSaver().save(savePath,System.currentTimeMillis().toString().trim { it <= ' ' },bitmap,QRGContents.ImageType.IMAGE_JPEG)
                     val result = if (save) "Image Saved" else "Image Not Saved"
                     Toast.makeText(activity, result, Toast.LENGTH_LONG).show()
-                    msgEdt.text = null
+//                    msgEdt.text = null
+
+                    //scan file for gallery
+                    MediaScannerConnection.scanFile(context, arrayOf(savePath), arrayOf("image/jpeg"), null);
+
+
+//                    val resolver = context?.contentResolver
+//                    val contentValues = ContentValues().apply {
+//                        put(MediaStore.MediaColumns.DISPLAY_NAME, "CuteKitten001")
+//                        put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+//                        put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+//                        put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM/FuelCalculator")
+//                    }
+//
+//                    val uri = resolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+//                    val values = ContentValues()
+//                    values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+//                    values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+//                    values.put(MediaStore.MediaColumns.DATA, savePath);
+//                    requireContext().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+//                    Toast.makeText(activity, "Saved!", Toast.LENGTH_LONG).show()
                 } catch (e: java.lang.Exception) {
                     e.printStackTrace()
                 }
@@ -173,12 +191,11 @@ class QrCodeGeneratorFragment : Fragment() {
         }
 
     }
-
     fun getTimeStamp(): Long {
         return System.currentTimeMillis()
     }
-
     fun translateTimeStamp(timestamp:Long){
 
     }
+
 }
