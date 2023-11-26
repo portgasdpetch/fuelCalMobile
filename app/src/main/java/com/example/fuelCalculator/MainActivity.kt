@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
+        //change back to fuel calculator after complete
         this@MainActivity.title = ("Fuel Calculator") // default toolbar title
 
         val toggle = ActionBarDrawerToggle(

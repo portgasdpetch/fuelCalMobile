@@ -5,6 +5,8 @@ import android.content.ContentValues
 import android.content.Context.WINDOW_SERVICE
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.graphics.Point
 import android.media.MediaScannerConnection
 import android.os.Build
@@ -26,6 +28,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class QrCodeGeneratorFragment : Fragment() {
@@ -36,6 +41,8 @@ class QrCodeGeneratorFragment : Fragment() {
     private lateinit var generateQRBtn: Button
     private lateinit var saveQRBtn: Button
     private var savePath = Environment.getExternalStorageDirectory().path + "/QRCode/"
+
+    private lateinit var rotateBtn:Button
 
     // on below line we are creating
     // a variable for bitmap
@@ -88,6 +95,8 @@ class QrCodeGeneratorFragment : Fragment() {
         msgEdt = view.findViewById(R.id.idEdt)
         generateQRBtn = view.findViewById(R.id.idBtnGenerateQR)
         saveQRBtn = view.findViewById(R.id.idBtnSaveQR)
+
+//        rotateBtn = view.findViewById(R.id.rotateButton)
 
         if (Build.VERSION.SDK_INT >= 29) {
             savePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).path + "/QRCode/";
@@ -190,11 +199,59 @@ class QrCodeGeneratorFragment : Fragment() {
 
         }
 
+//        rotateBtn.setOnClickListener {
+//            if (ContextCompat.checkSelfPermission(requireContext(),
+//                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                ) == PackageManager.PERMISSION_GRANTED) {
+//                try {
+//                    rotateImage()
+//                } catch (e: java.lang.Exception) {
+//                    e.printStackTrace()
+//                }
+//            } else {
+//                ActivityCompat.requestPermissions(
+//                    activity!!,
+//                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+//                    0
+//                )
+//            }
+//        }
+
     }
     fun getTimeStamp(): Long {
         return System.currentTimeMillis()
     }
     fun translateTimeStamp(timestamp:Long){
+
+    }
+
+
+    private fun rotateImage(){
+        val photoPath: String = savePath
+        var bmp: Bitmap = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path+("/2124411.jpg"))
+
+        val matrix = Matrix()
+        matrix.postRotate(90f)
+        bmp = Bitmap.createBitmap(bmp, 0, 0, bmp.width, bmp.height, matrix, true)
+
+        val fOut: FileOutputStream
+        try {
+            fOut = FileOutputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).path+("/2124411.jpg"))
+            bmp.compress(Bitmap.CompressFormat.JPEG, 85, fOut)
+            fOut.flush()
+            fOut.close()
+            Toast.makeText(context,"exported",Toast.LENGTH_SHORT).show()
+        } catch (e1: FileNotFoundException) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace()
+        } catch (e: IOException) {
+            // TODO Auto-generated catch block
+            e.printStackTrace()
+        }
+    }
+
+    private fun rotateVDO(){
+        val vdoPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).path+"/demo/"
 
     }
 

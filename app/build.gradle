@@ -55,5 +55,9 @@ dependencies {
     apply plugin: 'com.android.application'
     apply plugin: 'kotlin-android-extensions'
     implementation 'com.github.androidmads:QRGenerator:1.0.1'
+//    implementation 'com.github.MasayukiSuda:Mp4Composer-android:v0.4.1'
+    implementation 'com.github.MasayukiSuda:GPUVideo-android:v0.1.2'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.15.1'
+
 }
 

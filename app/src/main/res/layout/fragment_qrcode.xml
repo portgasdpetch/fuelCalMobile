@@ -74,4 +74,14 @@
         android:textAllCaps="false"
         android:backgroundTint="#009933" />
 
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/rotateButton"-->
+<!--        android:layout_below="@id/idBtnSaveQR"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:text="Rotate"-->
+<!--        android:textAllCaps="false"/>-->
+
 </RelativeLayout>
