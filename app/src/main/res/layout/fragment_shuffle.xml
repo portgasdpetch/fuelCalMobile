@@ -44,6 +44,46 @@
             app:chipTextColor="@color/colorAccent"
             app:chipVerticalSpacing="4dp"/>
 
+<!--        <EditText-->
+<!--            android:id="@+id/editText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Type here..."-->
+<!--            android:inputType="text"-->
+<!--            android:layout_below="@+id/restriction0TextView"/>-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/chipRecyclerView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/restriction0TextView"/>-->
+
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/restriction0TextView"-->
+<!--            android:layout_toEndOf="@+id/restriction0ChipGroup"-->
+<!--            android:id="@+id/restriction0EditText"-->
+<!--            android:paddingLeft="10dp"/>-->
+
+<!--        <com.google.android.material.chip.ChipGroup-->
+<!--            android:id="@+id/restriction0ChipGroup"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:singleLine="false"-->
+<!--            android:layout_below="@+id/restriction0TextView"-->
+<!--            android:paddingHorizontal="14dp">-->
+<!--&lt;!&ndash;        <com.google.android.material.chip.Chip&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="100dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/restriction0Chip"/>&ndash;&gt;-->
+<!--        </com.google.android.material.chip.ChipGroup>-->
+
+
+
+
+
+
 
 <!--        <com.hootsuite.nachos.NachoTextView-->
 <!--            android:layout_width="match_parent"-->

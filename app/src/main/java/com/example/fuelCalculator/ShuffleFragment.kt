@@ -3,7 +3,10 @@ package com.example.fuelCalculator
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import com.hootsuite.nachos.NachoTextView
@@ -49,10 +54,26 @@ class ShuffleFragment : Fragment() {
     private var randomList3: ArrayList<String> = arrayListOf()
     private lateinit var destroyedString:String
     private lateinit var playerQuantityEditText:EditText
+    private var counter = 1
+    private lateinit var chip0: Chip
+    private lateinit var chipGroup: ChipGroup
+    private lateinit var editText0: EditText
+//    private lateinit var editText: EditText
+//    private lateinit var chipRecyclerView: RecyclerView
+    private lateinit var chipAdapter: ChipAdapter
+    private val chips = mutableListOf<String>()
+    private var chipId:Int=0
 
     private lateinit var preferences: SharedPreferences
 
     private lateinit var drawer: DrawerLayout
+
+    private fun getChipId(): Int {
+        return chipId
+    }
+    private fun setChipId(chipId:Int) {
+            this.chipId = chipId
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -85,11 +106,39 @@ class ShuffleFragment : Fragment() {
         return v
     }
 
+    private fun handleSpaceBar() {
+        counter++
+        val runningNumber = "$counter.${nachosChip0.text}"
+        nachosChip0.setText(runningNumber)
+//        nachosChip0.setSelection(runningNumber.length)
+    }
+
+    private fun addChip(chipText: String) {
+        chips.add(chipText)
+        chipAdapter.notifyItemInserted(chips.size - 1)
+    }
+
+    private fun createChip(chipText: String) {
+        counter++
+        val chip = Chip(chipGroup.context)
+        chip.text = chipText
+        chip.id = View.generateViewId()
+        setChipId(chip.id)
+        chip.isCloseIconVisible = true
+        chip.setOnCloseIconClickListener {
+            chipGroup.removeView(chip)
+            counter--
+        }
+        Log.d("id","${getChipId()}")
+        chipGroup.addView(chip)
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         var suggestions =
-            arrayOf("Petch", "Tar", "Toy", "Que", "Mon", "Boat", "Ton", "Wan", "Bill", "Jame", "Moow", "Kerz", "Pao", "Win","Pete","Dai","Ohm","Jeff","Jumpoon")
+            arrayOf("Petch", "Tar", "Que", "Mon", "Ton", "Bill", "Jame", "Moow", "Pao", "Win","Jedi","Ohm","Jeff","Jumpoon","Tae","Moss")
         var adapter: ArrayAdapter<String> =
             ArrayAdapter(requireActivity(),android.R.layout.simple_dropdown_item_1line, suggestions)
 
@@ -112,6 +161,167 @@ class ShuffleFragment : Fragment() {
         nachosChip2.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR)
         nachosChip2.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
 
+        //deving
+        val regex = Regex("\\d")
+        val chip0ContainsNumber = regex.containsMatchIn(nachosChip0.text)
+
+        nachosChip0.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // TODO Auto-generated method stub
+//                Log.d("reg",regex.containsMatchIn(s).toString())
+//                if (s != null && s.isNotEmpty() && !regex.containsMatchIn(s.last().toString()) && s.last() != '.') {
+//                    Log.d("reg","in")
+//                    counter++
+//                    var chipValue: MutableList<String> = nachosChip0.chipValues
+////                    Log.d("value","nachosChipValues: "+nachosChip0.chipValues)
+//                    chipValue.replaceAll {it.replace("[","")}
+//                    chipValue.replaceAll {it.replace("]","")}
+//                    chipValue.replaceAll {it.replace(",","")}
+//                    var stringChipValue = chipValue.toString().replace("[","")
+//                    stringChipValue = stringChipValue.replace("]","")
+//                    stringChipValue = stringChipValue.replace(",","");
+////                    Log.d("value", "StringChipValue: $stringChipValue")
+//                    nachosChip0.append("${counter}.")
+////                    nachosChip0.setSelection(nachosChip0.length())
+//                    true
+//                } else {
+//                    false
+//                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // TODO Auto-generated method stub
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+                if (s != null && s.isNotEmpty() && s.last() == ' ') {
+//                if (s != null && s.isNotEmpty() && !regex.containsMatchIn(s)) {
+                    counter++
+                    var chipValue: MutableList<String> = nachosChip0.chipValues
+//                    Log.d("value","nachosChipValues: "+nachosChip0.chipValues)
+                    chipValue.replaceAll {it.replace("[","")}
+                    chipValue.replaceAll {it.replace("]","")}
+                    chipValue.replaceAll {it.replace(",","")}
+                    var stringChipValue = chipValue.toString().replace("[","")
+                    stringChipValue = stringChipValue.replace("]","")
+                    stringChipValue = stringChipValue.replace(",","");
+//                    Log.d("value", "StringChipValue: $stringChipValue")
+                    nachosChip0.append("${counter}.")
+//                    nachosChip0.setSelection(nachosChip0.length())
+                    true
+                } else {
+                    false
+                }
+            }
+        })
+
+        //in case no chip added yet
+        nachosChip0.setOnFocusChangeListener{ _, hasFocus ->
+            if (hasFocus) {
+                if(nachosChip0.chipValues.isEmpty() && nachosChip1.chipValues.isEmpty() && nachosChip2.chipValues.isEmpty()){
+                    nachosChip0.setText("${counter}.")
+                }
+            } else {
+                if(nachosChip0.chipValues.isEmpty() && nachosChip1.chipValues.isEmpty() && nachosChip2.chipValues.isEmpty()){
+                    nachosChip0.setText("")
+                }
+            }
+        }
+        nachosChip1.setOnFocusChangeListener{ _, hasFocus ->
+            if (hasFocus) {
+                if(nachosChip0.chipValues.isEmpty() && nachosChip1.chipValues.isEmpty() && nachosChip2.chipValues.isEmpty()){
+                    nachosChip1.setText("${counter}.")
+                }
+            } else {
+                if(nachosChip0.chipValues.isEmpty() && nachosChip1.chipValues.isEmpty() && nachosChip2.chipValues.isEmpty()){
+                    nachosChip1.setText("")
+                }
+            }
+        }
+        nachosChip2.setOnFocusChangeListener{ _, hasFocus ->
+            if (hasFocus) {
+                if(nachosChip0.chipValues.isEmpty() && nachosChip1.chipValues.isEmpty() && nachosChip2.chipValues.isEmpty()){
+                    nachosChip2.setText("${counter}.")
+                }
+            } else {
+                if(nachosChip0.chipValues.isEmpty() && nachosChip1.chipValues.isEmpty() && nachosChip2.chipValues.isEmpty()){
+                    nachosChip2.setText("")
+                }
+            }
+        }
+
+        //start working for physical keyboard
+//        nachosChip0.setOnFocusChangeListener{ _, hasFocus ->
+//            if (hasFocus) {
+//                if(nachosChip0.text.isBlank() && nachosChip1.text.isBlank() && nachosChip2.text.isBlank()){
+//                    nachosChip0.setText("${counter}.")
+//                }
+//            } else {
+//
+//            }
+//        }
+//        nachosChip0.requestFocus()
+//        nachosChip0.setOnKeyListener { _, keyCode, event ->
+//            if (keyCode == KeyEvent.KEYCODE_SPACE && event.action == KeyEvent.ACTION_UP) {
+//                counter++
+//                var chipValue: MutableList<String> = nachosChip0.chipValues
+//                chipValue.replaceAll {it.replace("[","")}
+//                chipValue.replaceAll {it.replace("]","")}
+//                chipValue.replaceAll {it.replace(",","")}
+//                var stringChipValue = chipValue.toString().replace("[","")
+//                stringChipValue = stringChipValue.replace("]","")
+//                stringChipValue = stringChipValue.replace(",","");
+//                Log.d("value",stringChipValue)
+//                nachosChip0.setText("$stringChipValue ${counter}.")
+//                nachosChip0.setSelection(nachosChip0.length())
+//                true
+//            } else {
+//                false
+//            }
+//        }
+        //end working
+
+
+        //adding running number via editText
+//        chipGroup = view.findViewById(R.id.restriction0ChipGroup)
+//        editText0 = view.findViewById(R.id.restriction0EditText)
+//        editText0.setText("${++counter}.")
+//        editText0.requestFocus()
+//        val chipSpaceTextWatcher = ChipSpaceTextWatcher(chipGroup, editText0)
+//        editText0.addTextChangedListener(chipSpaceTextWatcher)
+
+//        editText0.setOnKeyListener { _, keyCode, event ->
+//            if (keyCode == KeyEvent.KEYCODE_SPACE && event.action == KeyEvent.ACTION_UP) {
+//                chipSpaceTextWatcher.handleSpacePressed(editText0.text)
+//                editText0.text.clear()
+//                true
+//            } else {
+//                false
+//            }
+//        }
+
+        //adding running number via RecyclerView
+//        editText = view.findViewById(R.id.editText)
+//        chipRecyclerView = view.findViewById(R.id.chipRecyclerView)
+//        chipAdapter = ChipAdapter(chips)
+//        chipRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//        chipRecyclerView.adapter = chipAdapter
+//        editText.setOnKeyListener { _, keyCode, event ->
+//            if (keyCode == KeyEvent.KEYCODE_SPACE && event.action == KeyEvent.ACTION_UP) {
+//                val chipText = editText.text.toString().trim()
+//                if (chipText.isNotEmpty()) {
+//                    addChip(chipText)
+//                    editText.setText("")
+//                }
+//                true
+//            } else {
+//                false
+//            }
+//        }
+
+
         nachosChip0.setAdapter(adapter)
         nachosChip1.setAdapter(adapter)
         nachosChip2.setAdapter(adapter)
@@ -125,6 +335,116 @@ class ShuffleFragment : Fragment() {
         output4 = view.findViewById(R.id.output4)
         output5 = view.findViewById(R.id.output5)
 
+
+        //last
+//        editText0.setOnKeyListener { _, keyCode, event ->
+//            if (keyCode == KeyEvent.KEYCODE_SPACE && event.action == KeyEvent.ACTION_UP) {
+//                val chipText = editText0.text.trim().toString()
+//                if (chipText.isNotBlank()) {
+//                    createChip(chipText)
+//                    //clear after created
+////                    editText0.text.clear()
+//                    //adding prefix number
+//                    editText0.setText("$counter.")
+//                    //move cursor to the end of number
+//                    editText0.setSelection(editText0.length())
+//                    val editText0LayoutParams:RelativeLayout.LayoutParams = editText0.layoutParams as RelativeLayout.LayoutParams
+//                    editText0LayoutParams.addRule(RelativeLayout.END_OF,chipGroup.id)
+//                    editText0.layoutParams = editText0LayoutParams
+//                    val restriction1TextViewLayoutParams:RelativeLayout.LayoutParams = restriction1TextView.layoutParams as RelativeLayout.LayoutParams
+//                    restriction1TextViewLayoutParams.addRule(RelativeLayout.BELOW,chipGroup.id)
+//                    restriction1TextView.layoutParams = restriction1TextViewLayoutParams
+//                }
+//                true
+//            } else {
+//                false
+//            }
+//        }
+
+        //restriction1
+        nachosChip1.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // TODO Auto-generated method stub
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+                if (s != null && s.isNotEmpty() && s.last() == ' ') {
+                    counter++
+                    var chipValue: MutableList<String> = nachosChip1.chipValues
+//                    Log.d("value","nachosChipValues: "+nachosChip0.chipValues)
+                    chipValue.replaceAll {it.replace("[","")}
+                    chipValue.replaceAll {it.replace("]","")}
+                    chipValue.replaceAll {it.replace(",","")}
+                    var stringChipValue = chipValue.toString().replace("[","")
+                    stringChipValue = stringChipValue.replace("]","")
+                    stringChipValue = stringChipValue.replace(",","");
+//                    Log.d("value", "StringChipValue: $stringChipValue")
+                    nachosChip1.append("${counter}.")
+//                    nachosChip0.setSelection(nachosChip0.length())
+                    true
+                } else {
+                    false
+                }
+            }
+        })
+//        nachosChip1.setOnKeyListener { _, keyCode, event ->
+//            if (keyCode == KeyEvent.KEYCODE_SPACE && event.action == KeyEvent.ACTION_UP) {
+//                counter++
+//                var chipValue: MutableList<String> = nachosChip1.chipValues
+//                chipValue.replaceAll {it.replace("[","")}
+//                chipValue.replaceAll {it.replace("]","")}
+//                chipValue.replaceAll {it.replace(",","")}
+//                var stringChipValue = chipValue.toString().replace("[","")
+//                stringChipValue = stringChipValue.replace("]","")
+//                stringChipValue = stringChipValue.replace(",","");
+//                Log.d("value",stringChipValue)
+//                nachosChip1.setText("$stringChipValue ${counter}.")
+//                nachosChip1.setSelection(nachosChip1.length())
+//                true
+//            } else {
+//                false
+//            }
+//        }
+
+        //restriction2
+        nachosChip2.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // TODO Auto-generated method stub
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // TODO Auto-generated method stub
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // TODO Auto-generated method stub
+                if (s != null && s.isNotEmpty() && s.last() == ' ') {
+                    counter++
+                    var chipValue: MutableList<String> = nachosChip2.chipValues
+//                    Log.d("value","nachosChipValues: "+nachosChip0.chipValues)
+                    chipValue.replaceAll {it.replace("[","")}
+                    chipValue.replaceAll {it.replace("]","")}
+                    chipValue.replaceAll {it.replace(",","")}
+                    var stringChipValue = chipValue.toString().replace("[","")
+                    stringChipValue = stringChipValue.replace("]","")
+                    stringChipValue = stringChipValue.replace(",","");
+//                    Log.d("value", "StringChipValue: $stringChipValue")
+                    nachosChip2.append("${counter}.")
+//                    nachosChip0.setSelection(nachosChip0.length())
+                    true
+                } else {
+                    false
+                }
+            }
+        })
+
         playerQuantityEditText = view.findViewById(R.id.playerQuantityEditText)
 
         preferences = activity!!.getSharedPreferences("SHUFFLING_PREFERENCE", Context.MODE_PRIVATE)
@@ -136,6 +456,8 @@ class ShuffleFragment : Fragment() {
         val fetch:Set<String> = preferences.getStringSet("result", emptySet()) as Set<String>
         output2.text = fetch.toString().replace("[","").replace("]","")
         destroyedString = preferences.getString("lineResult","").toString()
+
+
 
         if (output2.text.toString()!=("")){
             output2.visibility = View.VISIBLE
@@ -225,7 +547,6 @@ class ShuffleFragment : Fragment() {
         Log.i("jaishock",output2.toString())
         editor.commit()
     }
-
 
     private fun shufflePlayer() {
         //list of chip value

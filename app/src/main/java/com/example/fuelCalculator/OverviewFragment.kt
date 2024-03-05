@@ -1,17 +1,22 @@
 package com.example.fuelCalculator
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputFilter
 import android.text.Spanned
+import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -19,11 +24,6 @@ import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
-import android.widget.Toast
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class OverviewFragment : Fragment() {
@@ -121,6 +121,35 @@ class OverviewFragment : Fragment() {
         consumptionEditText = view.findViewById(R.id.vehicle_consumption)
         peopleEditText = view.findViewById(R.id.people)
 
+        //try textWatcher
+//        peopleEditText.addTextChangedListener(object : TextWatcher {
+//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+//                // TODO Auto-generated method stub
+//
+//            }
+//
+//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+//
+//                // TODO Auto-generated method stub
+//            }
+//
+//            override fun afterTextChanged(s: Editable) {
+//                // TODO Auto-generated method stub
+//                s?.let {
+//                    val text = it.toString().trim()
+//                    if (text.isNotEmpty()) {
+//                        val position = text.toIntOrNull()
+//                        position?.let {
+//                            val ordinal = addOrdinal(it)
+//                            editText.removeTextChangedListener(this)
+//                            editText.setText(ordinal)
+//                            editText.setSelection(ordinal.length)
+//                            editText.addTextChangedListener(this)
+//                        }
+//                    }
+//                }
+//            }
+//        })
         preferences = activity!!.getSharedPreferences("CALCULATOR_PREFERENCE",Context.MODE_PRIVATE)
 
         distanceInputEditText.setText(preferences.getString("vehicle_distance",""))
@@ -249,6 +278,8 @@ class OverviewFragment : Fragment() {
         }
 
     }
+
+
 
     private fun clearFormAndPreferences(){
         distanceInputEditText.setText("")
