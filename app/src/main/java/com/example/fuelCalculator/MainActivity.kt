@@ -64,12 +64,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 toolbar.setBackgroundColor(getColor(R.color.colorPrimary))
                 window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
             }
-            R.id.nav_shuffle -> {
-                changeFragment(ShuffleFragment())
-                this@MainActivity.title = ("Balance Shuffle")
-                toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
-                window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
-            }
+//            R.id.nav_shuffle -> {
+//                changeFragment(ShuffleFragment())
+//                this@MainActivity.title = ("Balance Shuffle")
+//                toolbar.setBackgroundColor(getColor(R.color.colorSecondary))
+//                window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+//            }
             R.id.nav_fuelPrice -> {
                 changeFragment(OilPriceFragment())
                 this@MainActivity.title = ("Fuel Price")
