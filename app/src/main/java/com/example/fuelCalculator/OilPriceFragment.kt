@@ -34,7 +34,7 @@ class OilPriceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        drawer = activity!!.findViewById(R.id.drawer_layout);
+        drawer = requireActivity().findViewById(R.id.drawer_layout);
         val v: View = inflater.inflate(R.layout.fragment_oilprice, container, false)
         setHasOptionsMenu(true)
         return v

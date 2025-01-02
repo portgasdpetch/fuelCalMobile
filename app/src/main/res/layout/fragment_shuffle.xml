@@ -3,298 +3,296 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="0dp"
-    tools:context=".MainActivity"
-    android:focusableInTouchMode="true"
-    android:descendantFocusability="beforeDescendants"
     android:clickable="true"
+    android:descendantFocusability="beforeDescendants"
     android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:id="@+id/root_constraint_layout">
+    android:paddingVertical="0dp"
+    tools:context=".MainActivity">
 
     <RelativeLayout
+        android:id="@+id/root_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/root_relative_layout"
         android:paddingVertical="8dp">
 
         <TextView
+            android:id="@+id/textView0"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="test"/>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="0dp"
+            android:hint="Non-restriction"
+            android:inputType="textMultiLine"
+            android:paddingLeft="10dp"
+            android:visibility="visible"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:errorEnabled="false" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/restriction0TextView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="0dp"-->
-<!--            app:boxBackgroundColor="@android:color/transparent"-->
-<!--            app:errorEnabled="false"-->
-<!--            android:hint="Non-restriction"-->
-<!--            android:inputType="textMultiLine"-->
-<!--            android:visibility="visible"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            style="@style/TextAppearance.AppCompat.Title" />-->
-<!--        <com.hootsuite.nachos.NachoTextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/restriction0NachoText"-->
-<!--            android:inputType="textMultiLine"-->
-<!--            android:layout_below="@+id/restriction0TextView"-->
-<!--            android:paddingHorizontal="14dp"-->
-<!--            android:scrollHorizontally="true"-->
-<!--            android:maxLines="4"-->
-<!--            app:chipTextColor="@color/colorAccent"-->
-<!--            app:chipVerticalSpacing="4dp"/>-->
-
-<!--&lt;!&ndash;        <EditText&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/editText"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:hint="Type here..."&ndash;&gt;-->
-<!--&lt;!&ndash;            android:inputType="text"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_below="@+id/restriction0TextView"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/chipRecyclerView"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_below="@id/restriction0TextView"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <EditText&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_below="@+id/restriction0TextView"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_toEndOf="@+id/restriction0ChipGroup"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/restriction0EditText"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingLeft="10dp"/>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <com.google.android.material.chip.ChipGroup&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/restriction0ChipGroup"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:singleLine="false"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_below="@+id/restriction0TextView"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingHorizontal="14dp">&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;        <com.google.android.material.chip.Chip&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            android:layout_width="100dp"&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            android:id="@+id/restriction0Chip"/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        </com.google.android.material.chip.ChipGroup>&ndash;&gt;-->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView0" />
 
 
+        <!--        <com.hootsuite.nachos.NachoTextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/restriction0NachoText"-->
+        <!--            android:inputType="textMultiLine"-->
+        <!--            android:layout_below="@+id/restriction0TextView"-->
+        <!--            android:paddingHorizontal="14dp"-->
+        <!--            android:scrollHorizontally="true"-->
+        <!--            android:maxLines="4"-->
+        <!--            app:chipTextColor="@color/colorAccent"-->
+        <!--            app:chipVerticalSpacing="4dp"/>-->
+
+        <!--&lt;!&ndash;        <EditText&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/editText"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:hint="Type here..."&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:inputType="text"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_below="@+id/restriction0TextView"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        <androidx.recyclerview.widget.RecyclerView&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/chipRecyclerView"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_below="@id/restriction0TextView"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        <EditText&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_below="@+id/restriction0TextView"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_toEndOf="@+id/restriction0ChipGroup"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/restriction0EditText"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:paddingLeft="10dp"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        <com.google.android.material.chip.ChipGroup&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/restriction0ChipGroup"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            app:singleLine="false"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_below="@+id/restriction0TextView"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:paddingHorizontal="14dp">&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;        <com.google.android.material.chip.Chip&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;            android:layout_width="100dp"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;            android:id="@+id/restriction0Chip"/>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        </com.google.android.material.chip.ChipGroup>&ndash;&gt;-->
 
 
+        <!--&lt;!&ndash;        <com.hootsuite.nachos.NachoTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="63dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/restriction1NachoText"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:inputType="text"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:singleLine="false"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:paddingHorizontal="14dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_alignBottom="@+id/restriction1TextInput"/>&ndash;&gt;-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/restriction1TextView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginHorizontal="0dp"-->
+        <!--            app:errorEnabled="false"-->
+        <!--            android:hint="Restriction"-->
+        <!--            app:boxBackgroundColor="@android:color/transparent"-->
+        <!--            android:layout_below="@id/restriction0NachoText"-->
+        <!--            android:visibility="visible"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            style="@style/TextAppearance.AppCompat.Title"/>-->
 
 
+        <!--        <com.hootsuite.nachos.NachoTextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/restriction1NachoText"-->
+        <!--            android:inputType="textMultiLine"-->
+        <!--            android:paddingHorizontal="14dp"-->
+        <!--            android:layout_below="@id/restriction1TextView"-->
+        <!--            android:scrollHorizontally="true"-->
+        <!--            app:chipTextColor="#FFFFFE"-->
+        <!--            app:chipBackground="#ff725c"-->
+        <!--            app:chipVerticalSpacing="4dp"-->
+        <!--            />-->
 
-<!--&lt;!&ndash;        <com.hootsuite.nachos.NachoTextView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="63dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/restriction1NachoText"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:inputType="text"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:singleLine="false"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:paddingHorizontal="14dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_alignBottom="@+id/restriction1TextInput"/>&ndash;&gt;-->
-<!--        <TextView-->
-<!--            android:id="@+id/restriction1TextView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="0dp"-->
-<!--            app:errorEnabled="false"-->
-<!--            android:hint="Restriction"-->
-<!--            app:boxBackgroundColor="@android:color/transparent"-->
-<!--            android:layout_below="@id/restriction0NachoText"-->
-<!--            android:visibility="visible"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            style="@style/TextAppearance.AppCompat.Title"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/restriction2TextView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginHorizontal="0dp"-->
+        <!--            app:errorEnabled="false"-->
+        <!--            android:hint="Restriction 2"-->
+        <!--            android:visibility="visible"-->
+        <!--            app:boxBackgroundColor="@android:color/transparent"-->
+        <!--            android:layout_below="@id/restriction1NachoText"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            style="@style/TextAppearance.AppCompat.Title"-->
+        <!--            app:helperTextEnabled="true"-->
+        <!--            app:helperText="in case you need a restriction between players" />-->
 
+        <!--        <com.hootsuite.nachos.NachoTextView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/restriction2NachoText"-->
+        <!--            android:inputType="textMultiLine"-->
+        <!--            android:paddingHorizontal="14dp"-->
+        <!--            android:layout_below="@id/restriction2TextView"-->
+        <!--            app:chipTextColor="#FFFFFE"-->
+        <!--            app:chipBackground="#f279cd"-->
+        <!--            android:scrollHorizontally="true"-->
+        <!--            app:chipVerticalSpacing="4dp"/>-->
 
-<!--        <com.hootsuite.nachos.NachoTextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/restriction1NachoText"-->
-<!--            android:inputType="textMultiLine"-->
-<!--            android:paddingHorizontal="14dp"-->
-<!--            android:layout_below="@id/restriction1TextView"-->
-<!--            android:scrollHorizontally="true"-->
-<!--            app:chipTextColor="#FFFFFE"-->
-<!--            app:chipBackground="#ff725c"-->
-<!--            app:chipVerticalSpacing="4dp"-->
-<!--            />-->
+        <!--        <CheckBox-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/restriction2NachoText"-->
+        <!--            android:checked="true"-->
+        <!--            android:text="No duplicate matching"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:id="@+id/no_duplicate_checkbox"/>-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/restriction2TextView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="0dp"-->
-<!--            app:errorEnabled="false"-->
-<!--            android:hint="Restriction 2"-->
-<!--            android:visibility="visible"-->
-<!--            app:boxBackgroundColor="@android:color/transparent"-->
-<!--            android:layout_below="@id/restriction1NachoText"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            style="@style/TextAppearance.AppCompat.Title"-->
-<!--            app:helperTextEnabled="true"-->
-<!--            app:helperText="in case you need a restriction between players" />-->
+        <!--        <CheckBox-->
+        <!--            android:id="@+id/match_restriction_checkbox"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/no_duplicate_checkbox"-->
+        <!--            android:checked="false"-->
+        <!--            android:text="Match Restrictions First"-->
+        <!--            android:layout_marginLeft="10dp"/>-->
 
-<!--        <com.hootsuite.nachos.NachoTextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/restriction2NachoText"-->
-<!--            android:inputType="textMultiLine"-->
-<!--            android:paddingHorizontal="14dp"-->
-<!--            android:layout_below="@id/restriction2TextView"-->
-<!--            app:chipTextColor="#FFFFFE"-->
-<!--            app:chipBackground="#f279cd"-->
-<!--            android:scrollHorizontally="true"-->
-<!--            app:chipVerticalSpacing="4dp"/>-->
-
-<!--        <CheckBox-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/restriction2NachoText"-->
-<!--            android:checked="true"-->
-<!--            android:text="No duplicate matching"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:id="@+id/no_duplicate_checkbox"/>-->
-
-<!--        <CheckBox-->
-<!--            android:id="@+id/match_restriction_checkbox"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/no_duplicate_checkbox"-->
-<!--            android:checked="false"-->
-<!--            android:text="Match Restrictions First"-->
-<!--            android:layout_marginLeft="10dp"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/PlayerQuantityTextBox"-->
-<!--            android:layout_width="107dp"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:layout_below="@id/restriction2NachoText"-->
-<!--            android:paddingVertical="14dp"-->
-<!--            android:layout_marginLeft="95dp"-->
-<!--            android:layout_toRightOf="@+id/match_restriction_checkbox"-->
-<!--            android:text="Players per team" />-->
-<!--        <EditText-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/restriction2NachoText"-->
-<!--            android:layout_toRightOf="@id/match_restriction_checkbox"-->
-<!--            android:layout_marginLeft="65dp"-->
-<!--            android:text="2"-->
-<!--            android:id="@+id/playerQuantityEditText"-->
-<!--            android:inputType="number"></EditText>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/PlayerQuantityTextBox"-->
+        <!--            android:layout_width="107dp"-->
+        <!--            android:layout_height="48dp"-->
+        <!--            android:layout_below="@id/restriction2NachoText"-->
+        <!--            android:paddingVertical="14dp"-->
+        <!--            android:layout_marginLeft="95dp"-->
+        <!--            android:layout_toRightOf="@+id/match_restriction_checkbox"-->
+        <!--            android:text="Players per team" />-->
+        <!--        <EditText-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/restriction2NachoText"-->
+        <!--            android:layout_toRightOf="@id/match_restriction_checkbox"-->
+        <!--            android:layout_marginLeft="65dp"-->
+        <!--            android:text="2"-->
+        <!--            android:id="@+id/playerQuantityEditText"-->
+        <!--            android:inputType="number"></EditText>-->
 
 
-<!--        <Button-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/match_restriction_checkbox"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:id="@+id/shuffle_button"-->
-<!--            android:text="Shuffle!"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginHorizontal="24dp">-->
-<!--        </Button>-->
-<!--        <Button-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/shuffle_button"-->
-<!--            android:id="@+id/reset_button"-->
-<!--            android:visibility="visible"-->
-<!--            android:text="Reset"-->
-<!--            android:layout_marginHorizontal="24dp"-->
-<!--            android:backgroundTint="@color/colorDarkGreen"/>-->
+        <!--        <Button-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/match_restriction_checkbox"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:id="@+id/shuffle_button"-->
+        <!--            android:text="Shuffle!"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginHorizontal="24dp">-->
+        <!--        </Button>-->
+        <!--        <Button-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/shuffle_button"-->
+        <!--            android:id="@+id/reset_button"-->
+        <!--            android:visibility="visible"-->
+        <!--            android:text="Reset"-->
+        <!--            android:layout_marginHorizontal="24dp"-->
+        <!--            android:backgroundTint="@color/colorDarkGreen"/>-->
 
-<!--        <View-->
-<!--            android:id="@+id/view_underline"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="2dp"-->
-<!--            android:layout_below="@+id/reset_button"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:background="#ff9703"-->
-<!--            android:visibility="gone"-->
-<!--            tools:visibility="visible"></View>-->
+        <!--        <View-->
+        <!--            android:id="@+id/view_underline"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="2dp"-->
+        <!--            android:layout_below="@+id/reset_button"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginBottom="10dp"-->
+        <!--            android:background="#ff9703"-->
+        <!--            android:visibility="gone"-->
+        <!--            tools:visibility="visible"></View>-->
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--            android:id="@+id/outerRecyclerView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_below="@+id/view_underline"-->
-<!--            android:scrollbars="horizontal" />-->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/view_underline"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:visibility="visible"-->
-<!--            tools:layout_editor_absoluteY="8dp" />-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--            android:id="@+id/outerRecyclerView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_below="@+id/view_underline"-->
+        <!--            android:scrollbars="horizontal" />-->
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recyclerView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/view_underline"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:visibility="visible"-->
+        <!--            tools:layout_editor_absoluteY="8dp" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/output"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/recyclerView"-->
-<!--            android:text="TextView"-->
-<!--            android:textSize="20sp"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:visibility="gone"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/output"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/recyclerView"-->
+        <!--            android:text="TextView"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:visibility="gone"/>-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/output2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/output"-->
-<!--            android:text="TextView"-->
-<!--            android:textSize="20sp"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:visibility="gone"/>-->
-<!--        <TextView-->
-<!--            android:id="@+id/output3"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/output2"-->
-<!--            android:text="TextView"-->
-<!--            android:textSize="20sp"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:visibility="gone"/>-->
-<!--        <TextView-->
-<!--            android:id="@+id/output4"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/output3"-->
-<!--            android:text="TextView"-->
-<!--            android:textSize="20sp"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:visibility="gone"/>-->
-<!--        <TextView-->
-<!--            android:id="@+id/output5"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/output4"-->
-<!--            android:text="TextView"-->
-<!--            android:textSize="20sp"-->
-<!--            android:paddingLeft="10dp"-->
-<!--            android:visibility="gone"/>-->
-<!--&lt;!&ndash;        <com.google.android.material.textview.MaterialTextView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/output2"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_below="@+id/view_underline"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_marginTop="305dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:gravity="end"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:padding="10dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:text=" Lorem ipsum"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:visibility="gone"&ndash;&gt;-->
-<!--&lt;!&ndash;            tools:visibility="gone" />&ndash;&gt;-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/output2"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/output"-->
+        <!--            android:text="TextView"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:visibility="gone"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/output3"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/output2"-->
+        <!--            android:text="TextView"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:visibility="gone"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/output4"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/output3"-->
+        <!--            android:text="TextView"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:visibility="gone"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/output5"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/output4"-->
+        <!--            android:text="TextView"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:visibility="gone"/>-->
+        <!--&lt;!&ndash;        <com.google.android.material.textview.MaterialTextView&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:id="@+id/output2"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_below="@+id/view_underline"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:layout_marginTop="305dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:gravity="end"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:text=" Lorem ipsum"&ndash;&gt;-->
+        <!--&lt;!&ndash;            android:visibility="gone"&ndash;&gt;-->
+        <!--&lt;!&ndash;            tools:visibility="gone" />&ndash;&gt;-->
 
     </RelativeLayout>
 

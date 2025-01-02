@@ -81,7 +81,7 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i("ae","onCreateView")
-        drawer = activity!!.findViewById(R.id.drawer_layout);
+        drawer = requireActivity().findViewById(R.id.drawer_layout);
         val v: View = inflater.inflate(R.layout.fragment_overview, container, false)
 
         //swiping functions
@@ -150,7 +150,7 @@ class OverviewFragment : Fragment() {
 //                }
 //            }
 //        })
-        preferences = activity!!.getSharedPreferences("CALCULATOR_PREFERENCE",Context.MODE_PRIVATE)
+        preferences = requireActivity().getSharedPreferences("CALCULATOR_PREFERENCE",Context.MODE_PRIVATE)
 
         distanceInputEditText.setText(preferences.getString("vehicle_distance",""))
         gasPriceEditText.setText(preferences.getString("gas_price",""))

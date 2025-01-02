@@ -59,7 +59,7 @@ class QrCodeGeneratorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i("ae", "onCreateView")
-        drawer = activity!!.findViewById(R.id.drawer_layout);
+        drawer = requireActivity().findViewById(R.id.drawer_layout);
         val v: View = inflater.inflate(R.layout.fragment_qrcode, container, false)
 
         //swiping functions
@@ -191,7 +191,7 @@ class QrCodeGeneratorFragment : Fragment() {
                 }
             } else {
                 ActivityCompat.requestPermissions(
-                    activity!!,
+                    requireActivity(),
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     0
                 )

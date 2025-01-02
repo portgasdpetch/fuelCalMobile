@@ -24,7 +24,7 @@ open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
 
     // from View.onTouchListener class
     override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean {
-        return gestureDetector.onTouchEvent(motionEvent)
+        return gestureDetector.onTouchEvent(motionEvent!!)
     }
 
     private inner class GestureListener : SimpleOnGestureListener() {
@@ -33,14 +33,14 @@ open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
         }
 
         override fun onFling(
-            e1: MotionEvent,
+            e1: MotionEvent?,
             e2: MotionEvent,
             velocityX: Float,
             velocityY: Float
         ): Boolean {
             var result = false
             try {
-                val diffY = e2.y - e1.y
+                val diffY = e2.y - e1!!.y
                 val diffX = e2.x - e1.x
                 if (abs(diffX) > abs(diffY)) {
                     if (abs(diffX) > Companion.SWIPE_THRESHOLD && abs(velocityX) > Companion.SWIPE_VELOCITY_THRESHOLD) {
@@ -64,6 +64,39 @@ open class OnSwipeTouchListener(context: Context?) : View.OnTouchListener {
             }
             return result
         }
+
+//        override fun onFling(
+//            e1: MotionEvent,
+//            e2: MotionEvent,
+//            velocityX: Float,
+//            velocityY: Float
+//        ): Boolean {
+//            var result = false
+//            try {
+//                val diffY = e2.y - e1.y
+//                val diffX = e2.x - e1.x
+//                if (abs(diffX) > abs(diffY)) {
+//                    if (abs(diffX) > Companion.SWIPE_THRESHOLD && abs(velocityX) > Companion.SWIPE_VELOCITY_THRESHOLD) {
+//                        if (diffX > 0) {
+//                            onSwipeRight()
+//                        } else {
+//                            onSwipeLeft()
+//                        }
+//                        result = true
+//                    }
+//                } else if (abs(diffY) > Companion.SWIPE_THRESHOLD && abs(velocityY) > Companion.SWIPE_VELOCITY_THRESHOLD) {
+//                    if (diffY > 0) {
+//                        onSwipeBottom()
+//                    } else {
+//                        onSwipeTop()
+//                    }
+//                    result = true
+//                }
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//            return result
+//        }
 
     }
 
